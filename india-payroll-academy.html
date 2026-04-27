@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>India Payroll Academy · 10-Day PM Curriculum</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0b0f0c;
+    --paper:#f4efe6;
+    --paper-2:#ebe3d3;
+    --rule:#1a1f1c;
+    --accent:#d94a1f;       /* vermilion / kumkum */
+    --accent-2:#1f5c4a;     /* deep payroll green */
+    --gold:#b8860b;
+    --muted:#5b5246;
+    --ok:#2f7d4f;
+    --warn:#b04617;
+    --shadow: 8px 8px 0 0 var(--ink);
+    --grid-line: rgba(11,15,12,0.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--paper);color:var(--ink);font-family:'Manrope',sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+  body{
+    background-image:
+      linear-gradient(var(--grid-line) 1px,transparent 1px),
+      linear-gradient(90deg,var(--grid-line) 1px,transparent 1px),
+      radial-gradient(ellipse at top right, rgba(217,74,31,0.08), transparent 50%),
+      radial-gradient(ellipse at bottom left, rgba(31,92,74,0.08), transparent 50%);
+    background-size: 32px 32px, 32px 32px, 100% 100%, 100% 100%;
+    min-height:100vh;
+  }
+  .display{font-family:'Fraunces',serif;font-weight:600;letter-spacing:-0.02em;line-height:1.05}
+  .mono{font-family:'JetBrains Mono',monospace}
+
+  /* === HEADER === */
+  header.masthead{
+    border-bottom:2px solid var(--ink);
+    background:var(--paper);
+    position:relative;
+    overflow:hidden;
+  }
+  .masthead-inner{
+    max-width:1400px;margin:0 auto;padding:24px 32px 28px;
+    display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end;
+  }
+  .brand-stack{display:flex;flex-direction:column;gap:8px}
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.18em;
+    text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:12px;
+  }
+  .eyebrow::before{content:"";width:32px;height:2px;background:var(--accent);display:inline-block}
+  h1.title{
+    font-family:'Fraunces',serif;font-weight:700;font-size:clamp(40px,6vw,84px);
+    letter-spacing:-0.035em;line-height:0.92;margin-top:4px;
+  }
+  h1.title .ital{font-style:italic;font-weight:400;color:var(--accent)}
+  .sub{font-size:15px;color:var(--muted);max-width:560px;margin-top:8px}
+  .meta-strip{
+    display:flex;flex-direction:column;align-items:flex-end;gap:8px;
+    font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);
+    text-align:right;
+  }
+  .meta-strip .pill{
+    background:var(--ink);color:var(--paper);padding:6px 12px;border-radius:999px;
+    font-size:10px;letter-spacing:0.12em;text-transform:uppercase;
+  }
+  .meta-strip .badge-row{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+
+  /* === PROGRESS BANNER === */
+  .progress-banner{
+    background:var(--ink);color:var(--paper);
+    padding:18px 32px;
+    border-bottom:2px solid var(--ink);
+  }
+  .progress-banner-inner{
+    max-width:1400px;margin:0 auto;
+    display:grid;grid-template-columns:auto 1fr auto auto;gap:24px;align-items:center;
+  }
+  .score-badge{
+    display:flex;align-items:baseline;gap:8px;
+  }
+  .score-num{font-family:'Fraunces',serif;font-size:42px;font-weight:600;line-height:1;color:var(--paper)}
+  .score-denom{font-family:'JetBrains Mono',monospace;font-size:12px;color:rgba(244,239,230,0.6)}
+  .progress-track{
+    height:10px;background:rgba(244,239,230,0.12);border-radius:0;position:relative;overflow:hidden;
+  }
+  .progress-fill{
+    position:absolute;top:0;left:0;height:100%;
+    background:linear-gradient(90deg,var(--accent),var(--gold));
+    transition:width 0.6s cubic-bezier(0.2,0.8,0.2,1);
+  }
+  .progress-marks{position:absolute;inset:0;display:flex}
+  .progress-marks span{flex:1;border-right:1px solid rgba(244,239,230,0.15)}
+  .progress-marks span:last-child{border-right:none}
+  .level-tag{
+    font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.18em;
+    text-transform:uppercase;padding:6px 10px;border:1px solid rgba(244,239,230,0.3);
+  }
+  .level-tag.active{background:var(--accent);border-color:var(--accent);color:var(--paper)}
+  .reset-btn{
+    background:transparent;color:rgba(244,239,230,0.6);border:1px solid rgba(244,239,230,0.2);
+    padding:6px 12px;font-family:'JetBrains Mono',monospace;font-size:10px;
+    letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;
+  }
+  .reset-btn:hover{color:var(--accent);border-color:var(--accent)}
+  .mode-badge{
+    font-family:var(--mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;
+    padding:5px 9px;border:1px solid var(--ink-faint);border-radius:2px;
+    color:var(--ink-soft);background:transparent;white-space:nowrap;
+  }
+  .mode-badge.owner{color:var(--accent-2);border-color:var(--accent-2)}
+  .mode-badge.visitor{color:var(--ink-soft)}
+
+  /* === MAIN GRID === */
+  main{max-width:1400px;margin:0 auto;padding:48px 32px 80px}
+  .section-header{
+    display:flex;align-items:baseline;gap:16px;margin-bottom:24px;
+    border-bottom:1px solid var(--ink);padding-bottom:12px;
+  }
+  .section-header h2{font-family:'Fraunces',serif;font-weight:600;font-size:32px;letter-spacing:-0.02em}
+  .section-header .num{
+    font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);
+    letter-spacing:0.15em;text-transform:uppercase;
+  }
+  .section-header .desc{margin-left:auto;font-size:13px;color:var(--muted);max-width:400px;text-align:right}
+
+  /* === DAY CARDS GRID === */
+  .days-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(340px, 1fr));
+    gap:24px;
+    margin-bottom:64px;
+  }
+  .day-card{
+    background:var(--paper);
+    border:2px solid var(--ink);
+    padding:20px 22px 24px;
+    position:relative;
+    transition:transform 0.25s, box-shadow 0.25s;
+    cursor:default;
+  }
+  .day-card:hover{
+    transform:translate(-3px,-3px);
+    box-shadow:6px 6px 0 0 var(--ink);
+  }
+  .day-card.completed{
+    background:var(--paper-2);
+  }
+  .day-card.completed::after{
+    content:"✓";position:absolute;top:14px;right:18px;
+    font-family:'Fraunces',serif;font-size:28px;color:var(--ok);font-weight:700;
+  }
+  .day-tier{
+    display:inline-block;
+    font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.18em;
+    text-transform:uppercase;padding:3px 8px;
+    border:1px solid var(--ink);margin-bottom:12px;
+  }
+  .day-tier.foundation{background:#fff8e7;color:var(--ink)}
+  .day-tier.intermediate{background:#e8f0e9;color:var(--accent-2)}
+  .day-tier.advanced{background:#fde8e0;color:var(--accent)}
+  .day-tier.expert{background:var(--ink);color:var(--paper)}
+  .day-num{
+    font-family:'Fraunces',serif;font-weight:300;font-size:14px;color:var(--muted);
+    letter-spacing:0.08em;text-transform:uppercase;
+  }
+  .day-title{
+    font-family:'Fraunces',serif;font-weight:600;font-size:24px;
+    letter-spacing:-0.015em;line-height:1.15;margin:4px 0 10px;
+  }
+  .day-title .ital{font-style:italic;font-weight:400}
+  .day-summary{font-size:13px;color:var(--muted);margin-bottom:14px;min-height:38px}
+  .day-stats{
+    display:flex;gap:12px;font-family:'JetBrains Mono',monospace;font-size:10px;
+    color:var(--muted);margin-bottom:14px;letter-spacing:0.08em;text-transform:uppercase;
+  }
+  .day-stats span{display:flex;align-items:center;gap:4px}
+  .topic-list{list-style:none;margin-bottom:16px}
+  .topic-list li{
+    display:flex;align-items:flex-start;gap:10px;
+    font-size:13px;padding:7px 0;border-bottom:1px dashed rgba(11,15,12,0.12);
+  }
+  .topic-list li:last-child{border-bottom:none}
+  .topic-checkbox{
+    width:14px;height:14px;border:1.5px solid var(--ink);
+    flex-shrink:0;margin-top:3px;display:flex;align-items:center;justify-content:center;
+    font-size:10px;color:transparent;transition:all 0.2s;
+  }
+  .topic-list li.visited .topic-checkbox{background:var(--accent);color:var(--paper);border-color:var(--accent)}
+  .topic-link{
+    color:var(--ink);text-decoration:none;flex:1;line-height:1.3;
+    transition:color 0.15s;
+  }
+  .topic-link:hover{color:var(--accent);text-decoration:underline;text-underline-offset:2px}
+  .topic-list li.visited .topic-link{color:var(--muted)}
+  .day-cta-row{
+    display:flex;gap:10px;margin-top:auto;
+  }
+  .btn{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;
+    text-transform:uppercase;padding:10px 14px;border:2px solid var(--ink);
+    background:var(--paper);color:var(--ink);cursor:pointer;flex:1;
+    transition:all 0.18s;text-align:center;text-decoration:none;display:inline-block;
+  }
+  .btn:hover:not(:disabled){background:var(--ink);color:var(--paper)}
+  .btn.primary{background:var(--accent);color:var(--paper);border-color:var(--accent)}
+  .btn.primary:hover:not(:disabled){background:var(--ink);border-color:var(--ink)}
+  .btn:disabled{opacity:0.4;cursor:not-allowed}
+  .btn.passed{background:var(--ok);color:var(--paper);border-color:var(--ok)}
+  .quiz-status{
+    font-family:'JetBrains Mono',monospace;font-size:10px;
+    color:var(--muted);margin-top:10px;text-align:center;letter-spacing:0.08em;
+  }
+
+  /* === FINAL EXAM CARD === */
+  .final-exam-card{
+    background:var(--ink);color:var(--paper);
+    padding:40px;border:2px solid var(--ink);
+    margin-bottom:48px;
+    display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;
+    position:relative;overflow:hidden;
+  }
+  .final-exam-card::before{
+    content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(circle at 100% 50%, rgba(217,74,31,0.15), transparent 60%),
+      radial-gradient(circle at 0% 0%, rgba(184,134,11,0.1), transparent 50%);
+    pointer-events:none;
+  }
+  .final-exam-card > *{position:relative;z-index:1}
+  .final-exam-card .eyebrow{color:rgba(244,239,230,0.6)}
+  .final-exam-card .eyebrow::before{background:var(--gold)}
+  .final-exam-card h2{
+    font-family:'Fraunces',serif;font-weight:600;font-size:48px;
+    letter-spacing:-0.025em;line-height:1;margin:8px 0 12px;
+  }
+  .final-exam-card h2 .ital{font-style:italic;color:var(--gold)}
+  .final-exam-card p{color:rgba(244,239,230,0.75);max-width:520px;font-size:14px}
+  .final-stats{
+    display:flex;gap:32px;margin-top:18px;
+    font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(244,239,230,0.6);
+    letter-spacing:0.1em;text-transform:uppercase;
+  }
+  .final-stats strong{color:var(--paper);font-size:13px;display:block}
+  .btn-final{
+    font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.18em;
+    text-transform:uppercase;padding:18px 28px;
+    background:var(--accent);color:var(--paper);border:2px solid var(--accent);
+    cursor:pointer;transition:all 0.2s;
+  }
+  .btn-final:hover:not(:disabled){background:var(--gold);border-color:var(--gold)}
+  .btn-final:disabled{opacity:0.3;cursor:not-allowed;background:transparent;color:rgba(244,239,230,0.4);border-color:rgba(244,239,230,0.2)}
+
+  /* === MILESTONE SECTION === */
+  .milestones{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+    border:2px solid var(--ink);margin-bottom:48px;
+  }
+  .milestone{
+    padding:24px 28px;border-right:2px solid var(--ink);
+    background:var(--paper);
+    position:relative;
+  }
+  .milestone:last-child{border-right:none}
+  .milestone.achieved{background:var(--paper-2)}
+  .milestone-tier{
+    font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.15em;
+    text-transform:uppercase;color:var(--muted);
+  }
+  .milestone-title{
+    font-family:'Fraunces',serif;font-weight:600;font-size:22px;
+    margin:6px 0 4px;letter-spacing:-0.015em;
+  }
+  .milestone-title .ital{font-style:italic;font-weight:400;color:var(--accent)}
+  .milestone-criteria{font-size:12px;color:var(--muted)}
+  .milestone-status{
+    font-family:'JetBrains Mono',monospace;font-size:10px;
+    margin-top:10px;letter-spacing:0.12em;text-transform:uppercase;
+  }
+  .milestone.achieved .milestone-status{color:var(--ok)}
+  .milestone:not(.achieved) .milestone-status{color:var(--muted)}
+
+  /* === QUIZ MODAL === */
+  .modal-backdrop{
+    position:fixed;inset:0;background:rgba(11,15,12,0.92);
+    z-index:100;display:none;align-items:flex-start;justify-content:center;
+    overflow-y:auto;padding:32px 16px;
+  }
+  .modal-backdrop.active{display:flex}
+  .modal{
+    background:var(--paper);width:100%;max-width:760px;
+    border:2px solid var(--ink);box-shadow:12px 12px 0 0 var(--accent);
+    padding:32px 36px;position:relative;
+    animation:modalIn 0.35s cubic-bezier(0.2,0.8,0.2,1);
+  }
+  @keyframes modalIn{
+    from{opacity:0;transform:translateY(-20px) scale(0.98)}
+    to{opacity:1;transform:translateY(0) scale(1)}
+  }
+  .modal-close{
+    position:absolute;top:16px;right:20px;background:transparent;border:none;
+    font-size:24px;cursor:pointer;color:var(--ink);
+  }
+  .quiz-header{border-bottom:1px solid var(--ink);padding-bottom:16px;margin-bottom:24px}
+  .quiz-eyebrow{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.15em;
+    text-transform:uppercase;color:var(--accent);
+  }
+  .quiz-title{
+    font-family:'Fraunces',serif;font-weight:600;font-size:32px;
+    letter-spacing:-0.02em;margin:6px 0 8px;
+  }
+  .quiz-meta{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.08em}
+  .quiz-progress-bar{
+    height:6px;background:rgba(11,15,12,0.1);margin-top:14px;position:relative;overflow:hidden;
+  }
+  .quiz-progress-bar div{
+    position:absolute;top:0;left:0;height:100%;background:var(--accent);
+    transition:width 0.3s;
+  }
+  .question-card{padding:8px 0}
+  .q-num{
+    font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);
+    letter-spacing:0.1em;margin-bottom:6px;
+  }
+  .q-text{
+    font-family:'Fraunces',serif;font-weight:500;font-size:22px;
+    line-height:1.3;margin-bottom:24px;letter-spacing:-0.01em;
+  }
+  .options{display:flex;flex-direction:column;gap:10px}
+  .option{
+    border:2px solid var(--ink);padding:14px 18px;cursor:pointer;
+    background:var(--paper);transition:all 0.18s;
+    font-size:15px;display:flex;align-items:flex-start;gap:12px;
+    text-align:left;font-family:inherit;color:var(--ink);
+  }
+  .option:hover:not(:disabled){background:var(--paper-2);transform:translateX(4px)}
+  .option .opt-letter{
+    font-family:'JetBrains Mono',monospace;font-size:11px;
+    background:var(--ink);color:var(--paper);padding:3px 7px;
+    flex-shrink:0;letter-spacing:0.05em;
+  }
+  .option.selected{background:var(--ink);color:var(--paper)}
+  .option.selected .opt-letter{background:var(--accent);color:var(--paper)}
+  .option.correct{background:#d4ead7;border-color:var(--ok);color:var(--ink)}
+  .option.correct .opt-letter{background:var(--ok)}
+  .option.incorrect{background:#f5d4c4;border-color:var(--accent);color:var(--ink)}
+  .option.incorrect .opt-letter{background:var(--accent)}
+  .option:disabled{cursor:default}
+  .feedback-box{
+    margin-top:18px;padding:14px 18px;border-left:4px solid var(--accent);
+    background:rgba(217,74,31,0.06);font-size:13px;color:var(--muted);
+    display:none;
+  }
+  .feedback-box.show{display:block}
+  .feedback-box.correct{border-color:var(--ok);background:rgba(47,125,79,0.08);color:#1f5230}
+  .feedback-box strong{color:var(--ink);display:block;margin-bottom:4px}
+  .quiz-nav{
+    display:flex;justify-content:space-between;margin-top:28px;
+    padding-top:20px;border-top:1px solid var(--ink);
+  }
+  .quiz-nav button{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;
+    text-transform:uppercase;padding:12px 22px;border:2px solid var(--ink);
+    background:var(--paper);cursor:pointer;transition:all 0.18s;color:var(--ink);
+  }
+  .quiz-nav button.primary{background:var(--ink);color:var(--paper)}
+  .quiz-nav button:hover:not(:disabled){background:var(--accent);color:var(--paper);border-color:var(--accent)}
+  .quiz-nav button:disabled{opacity:0.3;cursor:not-allowed}
+
+  /* === RESULTS === */
+  .results{text-align:center;padding:24px 0}
+  .results-score{
+    font-family:'Fraunces',serif;font-weight:600;font-size:84px;
+    line-height:1;letter-spacing:-0.04em;
+  }
+  .results-score.pass{color:var(--ok)}
+  .results-score.fail{color:var(--accent)}
+  .results-denom{
+    font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--muted);
+    margin-top:4px;
+  }
+  .results-verdict{
+    font-family:'Fraunces',serif;font-weight:500;font-size:28px;
+    margin:20px 0 10px;letter-spacing:-0.015em;
+  }
+  .results-verdict.pass{color:var(--ok)}
+  .results-verdict.fail{color:var(--accent)}
+  .results-msg{font-size:14px;color:var(--muted);max-width:480px;margin:0 auto 24px}
+
+  /* === FOOTER === */
+  footer.colophon{
+    border-top:2px solid var(--ink);padding:32px;margin-top:48px;
+    background:var(--paper);
+  }
+  .colophon-inner{
+    max-width:1400px;margin:0 auto;
+    display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;
+    font-size:12px;color:var(--muted);
+  }
+  .colophon h4{
+    font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.18em;
+    text-transform:uppercase;color:var(--ink);margin-bottom:10px;
+  }
+  .colophon p{font-size:12px;line-height:1.55}
+  .colophon ul{list-style:none}
+  .colophon ul li{padding:3px 0}
+
+  /* === RESPONSIVE === */
+  @media (max-width: 900px){
+    .masthead-inner{grid-template-columns:1fr}
+    .meta-strip{align-items:flex-start;text-align:left}
+    .progress-banner-inner{grid-template-columns:1fr;gap:14px;text-align:center}
+    .meta-strip .badge-row{justify-content:flex-start}
+    .final-exam-card{grid-template-columns:1fr;text-align:center}
+    .milestones{grid-template-columns:1fr}
+    .milestone{border-right:none;border-bottom:2px solid var(--ink)}
+    .milestone:last-child{border-bottom:none}
+    .colophon-inner{grid-template-columns:1fr;gap:24px}
+    main{padding:32px 20px 60px}
+    .masthead-inner{padding:20px}
+    .progress-banner{padding:14px 20px}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="brand-stack">
+      <div class="eyebrow">Payroll Coach Series · India Edition · FY 2025-26 / Tax Year 2026-27</div>
+      <h1 class="title">India Payroll<br><span class="ital">Academy.</span></h1>
+      <p class="sub">A 10-day curriculum that takes a Product Manager from basic awareness to expert-level fluency in India payroll — Income Tax Act 2025, Labour Codes, statutory filings, and state-level compliance.</p>
+    </div>
+    <div class="meta-strip">
+      <span class="pill">Live · April 2026</span>
+      <div class="badge-row">
+        <span>10 days</span><span>·</span><span>240 questions</span><span>·</span><span>50+ resources</span>
+      </div>
+      <span style="font-size:10px;margin-top:4px">Last updated 27 Apr 2026</span>
+    </div>
+  </div>
+</header>
+
+<div class="progress-banner">
+  <div class="progress-banner-inner">
+    <div class="score-badge">
+      <span class="score-num" id="totalScore">0</span>
+      <span class="score-denom">/ 100 PTS</span>
+    </div>
+    <div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill" style="width:0%"></div>
+        <div class="progress-marks">
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:6px;font-family:'JetBrains Mono',monospace;font-size:9px;color:rgba(244,239,230,0.5);letter-spacing:0.1em">
+        <span>D1</span><span>D2</span><span>D3</span><span>D4</span><span>D5</span><span>D6</span><span>D7</span><span>D8</span><span>D9</span><span>D10</span><span>FINAL</span>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px">
+      <span class="level-tag" id="tagFoundation">Foundation</span>
+      <span class="level-tag" id="tagIntermediate">Intermediate</span>
+      <span class="level-tag" id="tagExpert">Expert</span>
+    </div>
+    <span id="modeBadge" class="mode-badge"></span>
+    <button class="reset-btn" onclick="resetAll()">Reset</button>
+  </div>
+</div>
+
+<main>
+  <!-- DAY CARDS -->
+  <div class="section-header">
+    <span class="num">§ 01</span>
+    <h2>Daily Modules</h2>
+    <span class="desc">Click each link to study, then take the day's 20-question quiz. Pass mark: 12/20.</span>
+  </div>
+  <div class="days-grid" id="daysGrid"></div>
+
+  <!-- MILESTONES -->
+  <div class="section-header">
+    <span class="num">§ 02</span>
+    <h2>Milestones</h2>
+    <span class="desc">Three checkpoints that mark your journey from foundation to expert.</span>
+  </div>
+  <div class="milestones" id="milestonesGrid"></div>
+
+  <!-- FINAL EXAM -->
+  <div class="section-header">
+    <span class="num">§ 03</span>
+    <h2>Capstone Exam</h2>
+    <span class="desc">Unlocked after Day 10. 40 questions. Pass mark 24/40.</span>
+  </div>
+  <div class="final-exam-card" id="finalExamCard">
+    <div>
+      <div class="eyebrow">Final Capstone · 40 Questions · Mixed Format</div>
+      <h2>The <span class="ital">Expert</span> Exam.</h2>
+      <p>The final 40-question exam covers everything: salary structure, statutory deductions, the new Income Tax Act 2025, Labour Codes, F&F, state compliance, and payroll operations end-to-end. Pass with 24/40 to claim Expert status.</p>
+      <div class="final-stats">
+        <div><strong id="finalUnlockStatus">Locked</strong>Status</div>
+        <div><strong>40</strong>Questions</div>
+        <div><strong>24/40</strong>Pass Mark</div>
+        <div><strong id="finalAttempts">—</strong>Best Score</div>
+      </div>
+    </div>
+    <button class="btn-final" id="finalExamBtn" onclick="startQuiz('final')" disabled>Start Final Exam</button>
+  </div>
+</main>
+
+<footer class="colophon">
+  <div class="colophon-inner">
+    <div>
+      <h4>About this curriculum</h4>
+      <p>Designed as a self-paced 10-day program for Product Managers building India payroll software. Reflects the Income Tax Act 2025 (effective 1 April 2026), the four Labour Codes (effective 21 November 2025), and the latest EPFO, ESIC, and state-level statutory positions as of April 2026.</p>
+      <p style="margin-top:8px">Progress is saved locally in your browser. Bookmark this page and reopen anytime.</p>
+    </div>
+    <div>
+      <h4>Sources of authority</h4>
+      <ul>
+        <li>incometax.gov.in</li>
+        <li>epfindia.gov.in</li>
+        <li>esic.nic.in</li>
+        <li>labour.gov.in</li>
+        <li>pib.gov.in (Budget 2026)</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Coach</h4>
+      <p>Payroll Coach Series · A self-study system for product managers in HRMS, payroll, and compliance domains.</p>
+      <p style="margin-top:8px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em">v 1.0 · 2026-04-27</p>
+    </div>
+  </div>
+</footer>
+
+<!-- QUIZ MODAL -->
+<div class="modal-backdrop" id="quizModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeQuiz()">×</button>
+    <div id="quizContent"></div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   INDIA PAYROLL ACADEMY — CURRICULUM DATA
+   ============================================================ */
+
+const CURRICULUM = [
+  {
+    day: 1,
+    tier: "foundation",
+    title: "Payroll Foundations & the Indian Salary Structure",
+    summary: "Why payroll exists, who it touches, and how an Indian salary slip is built — CTC, gross, net, and the components in between.",
+    topics: [
+      { label: "Payroll process end-to-end (overview)", url: "https://razorpay.com/learn/payroll-meaning-process-importance/" },
+      { label: "CTC vs Gross vs Net Salary explained", url: "https://cleartax.in/s/ctc-vs-take-home-salary" },
+      { label: "Salary structure components — Basic, HRA, allowances", url: "https://razorpay.com/learn/salary-components-and-structure-in-india/" },
+      { label: "Anatomy of an Indian payslip", url: "https://www.zoho.com/in/payroll/academy/payroll-basics/payslip-format.html" },
+      { label: "Stakeholders: Employee, Employer, Government", url: "https://www.greythr.com/guides/complete-guide-payroll/" }
+    ]
+  },
+  {
+    day: 2,
+    tier: "foundation",
+    title: "Provident Fund (EPF) & Pension (EPS) — Deep Dive",
+    summary: "The retirement social security pillar — contribution mechanics, the ₹15,000 ceiling, EPS split, UAN, and ECR filing.",
+    topics: [
+      { label: "EPF Act 1952 — overview & coverage", url: "https://www.epfindia.gov.in/site_en/index.php" },
+      { label: "EPF contribution rates (12% / 12% split)", url: "https://www.epfindia.gov.in/site_docs/PDFs/MiscPDFs/ContributionRate.pdf" },
+      { label: "EPS: 8.33% pension split & ₹15,000 wage ceiling", url: "https://cleartax.in/s/employee-pension-scheme-eps" },
+      { label: "PF calculation worked examples (with formula)", url: "https://www.bajajfinserv.in/investments/how-to-calculate-provident-fund-pf" },
+      { label: "UAN, ECR filing & EPFO portal basics", url: "https://unifiedportal-mem.epfindia.gov.in/memberinterface/" }
+    ]
+  },
+  {
+    day: 3,
+    tier: "foundation",
+    title: "ESI, Professional Tax & Labour Welfare Fund",
+    summary: "The other statutory deductions that hit the payslip — health insurance via ESI, state-level PT, and LWF nuances.",
+    topics: [
+      { label: "ESI Act 1948 — coverage & ₹21,000 wage limit", url: "https://www.esic.gov.in/" },
+      { label: "ESI contribution: 0.75% employee + 3.25% employer", url: "https://www.easyhr.app/blog/esi-contribution-rate-2026/" },
+      { label: "Professional Tax — state-wise rate matrix", url: "https://cleartax.in/s/professional-tax" },
+      { label: "Labour Welfare Fund (LWF) — applicability by state", url: "https://www.simpliance.in/labour-welfare-fund" },
+      { label: "ESI mid-year ceiling crossing rule (contribution period)", url: "https://esic.gov.in/contribution" }
+    ]
+  },
+  {
+    day: 4,
+    tier: "intermediate",
+    title: "Income Tax on Salary — Old vs New Regime",
+    summary: "The biggest deduction most employees see — slabs, regime choice, Section 87A rebate, and the ₹12 lakh zero-tax mechanic.",
+    topics: [
+      { label: "Income Tax slabs FY 2025-26 (New Regime)", url: "https://cleartax.in/s/income-tax-slabs" },
+      { label: "Section 87A rebate — how ₹12L becomes zero-tax", url: "https://cleartax.in/s/income-tax-rebate-us-87a" },
+      { label: "Old Regime deductions — 80C, 80D, HRA, home loan", url: "https://cleartax.in/s/80c-80-deductions" },
+      { label: "Standard deduction ₹75,000 — eligibility", url: "https://cleartax.in/s/standard-deduction-salaried-individuals" },
+      { label: "Salaried Individuals — full IT Department reference (AY 2026-27)", url: "https://www.incometax.gov.in/iec/foportal/help/individual/return-applicable-1" }
+    ]
+  },
+  {
+    day: 5,
+    tier: "intermediate",
+    title: "TDS on Salary, Form 16 & Form 24Q",
+    summary: "How tax is actually deducted month-by-month, declared via Section 192 / 392, reported on Form 24Q, and certified to the employee.",
+    topics: [
+      { label: "Section 192 (1961) → Section 392 (Act 2025) salary TDS", url: "https://thetaxcorp.in/article/new-tds-regime-under-income-tax-act-2025-practical-guide-to-sections-forms" },
+      { label: "Form 24Q — quarterly TDS return", url: "https://cleartax.in/s/form-24q" },
+      { label: "Form 16 → Form 130 (new structure under Act 2025)", url: "https://www.thepeoplesboard.com/hr-compliance/indias-new-income-tax-act-2025-11-changes-you-need-to-know/" },
+      { label: "Investment proofs & declaration cycle", url: "https://cleartax.in/s/investment-declaration" },
+      { label: "TDS compliance — official IT Department guide (Act 2025)", url: "https://www.incometax.gov.in/iec/foportal/help/all-topics/e-filing-services/tds-compliance" }
+    ]
+  },
+  {
+    day: 6,
+    tier: "intermediate",
+    title: "The Income Tax Act 2025 — What Actually Changes",
+    summary: "Effective 1 April 2026: section renumbering, the unified Tax Year, Form 130, and what payroll systems must update.",
+    topics: [
+      { label: "Income Tax Act 2025 — overview & key changes", url: "https://cleartax.in/s/income-tax-act-2025" },
+      { label: "Tax Year concept replacing FY/AY", url: "https://www.bajajfinserv.in/new-income-tax-bill-income-tax-act" },
+      { label: "11 changes every HR/Payroll professional needs to know", url: "https://www.thepeoplesboard.com/hr-compliance/indias-new-income-tax-act-2025-11-changes-you-need-to-know/" },
+      { label: "Objective & Scope of the new Act — official IT Department FAQ", url: "https://www.incometax.gov.in/iec/foportal/help/all-topics/e-filing-services/objective-and-scope-new-act" },
+      { label: "Payroll system readiness checklist for 1 Apr 2026", url: "https://group.teamlease.com/income-tax-rules-2025-payroll-compliance-guide-for-employers/" }
+    ]
+  },
+  {
+    day: 7,
+    tier: "advanced",
+    title: "Labour Codes — Code on Wages & 50% Rule",
+    summary: "Effective 21 Nov 2025: the unified wages definition, the 50% basic rule, and its cascade into PF, gratuity, leave encashment.",
+    topics: [
+      { label: "Four Labour Codes — implementation status April 2026", url: "https://omnivoo.com/blog/india-labour-codes-implementation-2026" },
+      { label: "Code on Wages 2019 — wage definition & 50% rule", url: "https://www.zfour.in/post/india-labour-codes-2026-50-percent-basic-pay-rule" },
+      { label: "MoLE FAQs (16 March 2026) — official clarifications", url: "https://www.labour.gov.in/static/uploads/2026/03/a4ccf4c6d97c4f1f36a6d83f8c64213d.pdf" },
+      { label: "Cascade: how 50% rule changes PF, gratuity, bonus", url: "https://accountx.in/new-labour-codes-payroll-compliance-india-2026/" },
+      { label: "Salary restructuring playbook for employers", url: "https://topsourceworldwide.com/insights/new-wage-code-2026-the-impact-on-payroll-processing-in-india/" }
+    ]
+  },
+  {
+    day: 8,
+    tier: "advanced",
+    title: "Gratuity, Leave, Bonus & Full-and-Final Settlement",
+    summary: "End-of-employment math — gratuity formula under the SS Code, leave encashment, statutory bonus, and the new 2-day F&F rule.",
+    topics: [
+      { label: "Payment of Gratuity — formula & SS Code 2020 changes", url: "https://cleartax.in/s/gratuity" },
+      { label: "Leave encashment — taxability & calculation", url: "https://cleartax.in/s/leave-encashment-tax-exemption" },
+      { label: "Statutory Bonus — Payment of Bonus Act mechanics", url: "https://cleartax.in/s/payment-of-bonus-act" },
+      { label: "Full-and-Final Settlement — components & 2-working-day rule", url: "https://www.indiafilings.com/payroll-management/new-salary-rules-2026" },
+      { label: "Fixed-term employees — pro-rata gratuity (1 year)", url: "https://www.cyrilshroff.com/wp-content/uploads/2026/01/60-days-of-Labour-Codes.pdf" }
+    ]
+  },
+  {
+    day: 9,
+    tier: "expert",
+    title: "State-Level Compliance & Special Pay Components",
+    summary: "Where India payroll gets messy — PT slabs by state, minimum wages, Shops & Establishment, plus reimbursements, perks, and ESOP.",
+    topics: [
+      { label: "Professional Tax — state-by-state rate cards", url: "https://razorpay.com/learn/professional-tax-state-rates/" },
+      { label: "State minimum wage notifications (VDA cycles)", url: "https://www.simpliance.in/minimum-wages" },
+      { label: "Shops & Commercial Establishment Acts (state)", url: "https://www.simpliance.in/shops-and-establishment-act" },
+      { label: "Perquisites valuation & taxability", url: "https://cleartax.in/s/perquisites-meaning-types-taxability" },
+      { label: "ESOP taxation — perquisite + capital gains", url: "https://cleartax.in/s/esop-tax-implications" }
+    ]
+  },
+  {
+    day: 10,
+    tier: "expert",
+    title: "Payroll Operations, Audit & Year-End Closure",
+    summary: "Running the engine — monthly cycle, exception handling, statutory filings calendar, audit readiness, and FY closure.",
+    topics: [
+      { label: "Monthly payroll calendar & due-date matrix", url: "https://crediblecs.com/pf-esi-payroll-year-end-checklist-2026-chennai/" },
+      { label: "Statutory filing due dates — PF/ESI/PT/TDS", url: "https://cleartax.in/s/payroll-compliance-india" },
+      { label: "Form 26AS / AIS / TIS reconciliation", url: "https://cleartax.in/s/view-tax-credit-statement-form-26as" },
+      { label: "Year-end payroll closure checklist", url: "https://www.teamleasehrtech.com/blog/the-ultimate-guide-to-statutory-compliance-in-indian-payroll-2026-27/" },
+      { label: "Common payroll errors and how to avoid them (2026)", url: "https://futurexsolutions.com/esi-contribution-compliance-payroll-guide-2026/" }
+    ]
+  }
+];
+
+/* ============================================================
+   QUIZ BANK — 10 daily quizzes (20 Q each) + 1 final (40 Q)
+   ============================================================ */
+
+const QUIZZES = {
+  1: {
+    title: "Day 1 · Payroll Foundations & Salary Structure",
+    passMark: 12,
+    questions: [
+      {q:"What does CTC stand for in Indian payroll terminology?",type:"mcq",options:["Cost to Company","Cash Take-home Component","Cumulative Tax Cost"],correct:0,explain:"CTC = Cost to Company. It is the total annual cost an employer incurs for an employee, including all benefits and statutory contributions."},
+      {q:"Net salary is always higher than Gross salary.",type:"tf",options:["True","False"],correct:1,explain:"Gross salary minus deductions (PF, PT, TDS, etc.) gives Net (take-home) salary. Net is always lower."},
+      {q:"Which of the following is typically NOT a part of the Employer's CTC outflow?",type:"mcq",options:["Employer PF contribution","Gratuity provision","Employee's TDS deduction"],correct:2,explain:"TDS is deducted from the employee's salary — it isn't an additional cost to the employer."},
+      {q:"HRA is fully tax-free for all salaried employees.",type:"tf",options:["True","False"],correct:1,explain:"HRA is exempt only to the extent of the least of three formula values, and only if the employee is on the old tax regime and pays rent."},
+      {q:"Basic Salary is the foundation for which of the following calculations?",type:"mcq",options:["EPF and Gratuity","Reimbursements","Travel allowance only"],correct:0,explain:"PF (12% of Basic + DA) and Gratuity (15/26 × Basic+DA × years) are both anchored to Basic."},
+      {q:"A payslip must legally be issued every month in India.",type:"tf",options:["True","False"],correct:0,explain:"Under the Payment of Wages Act (now subsumed into the Code on Wages 2019), employers must issue a wage slip each pay cycle."},
+      {q:"Which is the typical payroll cycle frequency for most Indian companies?",type:"mcq",options:["Weekly","Monthly","Bi-weekly"],correct:1,explain:"Monthly is overwhelmingly the norm. Weekly/bi-weekly is rare except in some manufacturing/contract setups."},
+      {q:"Conveyance allowance and meal vouchers are examples of:",type:"mcq",options:["Statutory deductions","Reimbursements / flexi-benefits","Bonus components"],correct:1,explain:"These are typically structured as flexi/reimbursement components, with tax exemption rules attached (mostly under old regime)."},
+      {q:"DA (Dearness Allowance) is mandatory for all private-sector salaries.",type:"tf",options:["True","False"],correct:1,explain:"DA is mandatory in PSUs and government sectors. Most private companies do not pay DA separately."},
+      {q:"What is the primary purpose of the payroll function from an employee's lens?",type:"mcq",options:["To raise invoices","To get paid accurately and on time","To file GST"],correct:1,explain:"Payroll's job is timely, accurate, compliant pay — and the documentation supporting it (payslip, Form 16/130, etc.)."},
+      {q:"Special Allowance is generally a residual / balancing component in CTC.",type:"tf",options:["True","False"],correct:0,explain:"Special Allowance is the typical 'plug' that fills the CTC after Basic, HRA, and other defined components are set."},
+      {q:"Which of these is a deduction that REDUCES gross salary to arrive at net pay?",type:"mcq",options:["Bonus","TDS","HRA"],correct:1,explain:"TDS, PF, PT are deductions from gross. HRA and Bonus are earnings that ADD to gross."},
+      {q:"From the employer's perspective, which of these is an explicit obligation?",type:"mcq",options:["Maintaining payroll records & statutory filings","Choosing between regimes for the employee","Filing the employee's ITR"],correct:0,explain:"The employer must maintain records, deposit statutory dues, and file 24Q etc. The employee chooses their tax regime and files their ITR."},
+      {q:"Gross Salary = Basic + Allowances + Bonus + Perks (cash). True or False?",type:"tf",options:["True","False"],correct:0,explain:"Gross is the sum of all earnings before deductions — Basic, all allowances, bonus, and any cash-equivalent perks."},
+      {q:"In India, payroll typically processes for which population?",type:"mcq",options:["Only on-roll permanent employees","Permanent + fixed-term + sometimes interns/trainees","Only managers and above"],correct:1,explain:"Modern payroll covers all on-roll employees including FTEs and stipendiary trainees. Contractors are usually paid via vendor invoice flows."},
+      {q:"Which of the following is generally considered a fixed monthly component?",type:"mcq",options:["Performance bonus","Basic salary","Diwali gift"],correct:1,explain:"Basic is a fixed contractual monthly component. Bonuses and gifts are variable/occasional."},
+      {q:"Reimbursements are paid against actual bills/proofs submitted by the employee.",type:"tf",options:["True","False"],correct:0,explain:"That's the defining feature — reimbursements require supporting bills, unlike allowances which are paid on a flat basis."},
+      {q:"A correctly designed payslip should include which of these at minimum?",type:"mcq",options:["Earnings, deductions, net pay","Only net pay","Only the bank account number"],correct:0,explain:"A compliant payslip shows breakup of all earnings, all deductions, and the net amount paid."},
+      {q:"The 'employer-employee-government' triangle describes the three core stakeholders of payroll.",type:"tf",options:["True","False"],correct:0,explain:"Employer pays, employee receives, government collects statutory dues — the three-party model anchors all payroll thinking."},
+      {q:"Which best describes the relationship between Gross Salary and CTC?",type:"mcq",options:["They are the same","CTC = Gross + Employer's statutory + benefits","Gross is always larger than CTC"],correct:1,explain:"CTC includes Gross Salary plus the employer's PF/ESI share, gratuity provision, insurance, and other benefits."}
+    ]
+  },
+
+  2: {
+    title: "Day 2 · EPF, EPS & UAN",
+    passMark: 12,
+    questions: [
+      {q:"What is the statutory EPF contribution rate from BOTH employer and employee?",type:"mcq",options:["10% each","12% each","8.33% each"],correct:1,explain:"Both employer and employee contribute 12% of Basic + DA. The employer's 12% is split into EPF (3.67%) and EPS (8.33%)."},
+      {q:"The current EPF wage ceiling is ₹15,000 per month.",type:"tf",options:["True","False"],correct:0,explain:"The wage ceiling has been ₹15,000 since 2014 and as of April 2026 has not been officially revised — though a Supreme Court order is awaiting implementation."},
+      {q:"What portion of the employer's 12% goes to the Employees' Pension Scheme (EPS)?",type:"mcq",options:["3.67%","8.33%","12%"],correct:1,explain:"Of the employer's 12%, 8.33% is diverted to EPS (capped at ₹15,000 wage = ₹1,250 max) and 3.67% goes to EPF savings."},
+      {q:"The maximum monthly EPS contribution per employee is capped at ₹1,250.",type:"tf",options:["True","False"],correct:0,explain:"8.33% × ₹15,000 ceiling = ₹1,249.50 ≈ ₹1,250. This is the statutory maximum even if the employee's basic is much higher."},
+      {q:"PF is calculated on which wage components?",type:"mcq",options:["Basic + DA only","Gross salary","CTC"],correct:0,explain:"PF wages = Basic + DA + Retaining Allowance. HRA, conveyance, special allowance, and bonus are excluded."},
+      {q:"What is UAN?",type:"mcq",options:["Universal Account Number — the lifelong PF identifier","Unified Allowance Number","Uniform Audit Number"],correct:0,explain:"UAN is the 12-digit Universal Account Number that stays with an employee for life across employers and EPF accounts."},
+      {q:"ECR stands for Electronic Challan-cum-Return and is filed monthly with EPFO.",type:"tf",options:["True","False"],correct:0,explain:"ECR is the monthly file uploaded to the EPFO portal that consolidates contributions and acts as both challan and return."},
+      {q:"The EPF interest rate declared for FY 2025-26 is:",type:"mcq",options:["7.50%","8.25%","9.00%"],correct:1,explain:"EPFO has retained the 8.25% rate for FY 2025-26, the same as the previous fiscal year."},
+      {q:"An employer with fewer than 20 employees may contribute at a 10% PF rate.",type:"tf",options:["True","False"],correct:0,explain:"The reduced 10% rate is allowed for establishments with fewer than 20 employees and certain specified categories (sick units, etc.)."},
+      {q:"Which fund accumulates the EDLI (insurance) component of PF contributions?",type:"mcq",options:["A/c 21 — Employees' Deposit Linked Insurance","A/c 1 — EPF","A/c 10 — EPS"],correct:0,explain:"EDLI is paid by the employer @ 0.50% of wages (max ₹75) into A/c 21. Employees do not contribute to EDLI."},
+      {q:"PF contribution applies even on HRA and overtime allowance.",type:"tf",options:["True","False"],correct:1,explain:"PF wages exclude HRA, overtime, bonus, and special allowance. Only Basic + DA + Retaining count."},
+      {q:"An employee whose Basic salary is ₹50,000 and the employer follows the statutory minimum approach — what is the employer's monthly PF contribution?",type:"mcq",options:["₹6,000","₹1,800","₹4,167"],correct:1,explain:"Employer caps at 12% of ₹15,000 ceiling = ₹1,800 even though Basic is higher, if the company follows the statutory minimum approach."},
+      {q:"The 8.33% pension contribution is calculated on actual basic, not on the ₹15,000 ceiling.",type:"tf",options:["True","False"],correct:1,explain:"EPS (8.33%) is always calculated on the wage ceiling of ₹15,000, even if actual Basic is higher. Max EPS = ₹1,250."},
+      {q:"What does EPS stand for?",type:"mcq",options:["Employees' Provident Saving","Employees' Pension Scheme","Employer Premium Scheme"],correct:1,explain:"EPS = Employees' Pension Scheme, 1995. It funds the monthly pension after retirement."},
+      {q:"International Workers (foreign nationals) in India also have a ₹15,000 PF wage ceiling.",type:"tf",options:["True","False"],correct:1,explain:"For International Workers, the ₹15,000 ceiling does NOT apply — PF is computed on full wages, by EPFO rule since 11 Sep 2014."},
+      {q:"PF withdrawal during continuous unemployment is allowed after how many months?",type:"mcq",options:["1 month","2 months continuous unemployment","6 months"],correct:1,explain:"Full withdrawal is permitted after 2 months of continuous unemployment (or at retirement / age 58 / specified events)."},
+      {q:"Which of the following is an EMPLOYER-only PF cost?",type:"mcq",options:["EPS contribution","EDLI (insurance)","Both EPS share and EDLI"],correct:2,explain:"EPS (8.33%) is part of the employer's 12%. EDLI (0.50%) and EPF Admin (0.50%, min ₹75) are employer-only costs."},
+      {q:"Tax-free PF interest is conditional on employee contribution staying within ₹2.5 lakh per year.",type:"tf",options:["True","False"],correct:0,explain:"Per Finance Act 2021, interest on EPF contributions exceeding ₹2.5 lakh/year (₹5L for govt employees) is taxable."},
+      {q:"The KYC of a UAN must include which of these?",type:"mcq",options:["Aadhaar, PAN, bank account","Only Aadhaar","Only PAN"],correct:0,explain:"For PF claims to process online, UAN must be seeded with Aadhaar, PAN, and a verified bank account."},
+      {q:"An employer who fails to deposit PF on time can be penalised with both interest and damages.",type:"tf",options:["True","False"],correct:0,explain:"Section 7Q (interest @ 12% p.a.) and Section 14B (damages 5–25% based on delay) apply on late PF deposits."}
+    ]
+  },
+
+  3: {
+    title: "Day 3 · ESI, Professional Tax & LWF",
+    passMark: 12,
+    questions: [
+      {q:"The current ESI wage ceiling is:",type:"mcq",options:["₹15,000","₹21,000","₹25,000"],correct:1,explain:"ESI applies to employees earning gross wages up to ₹21,000/month (₹25,000 for persons with disability)."},
+      {q:"ESI employee contribution rate is 0.75% of gross wages.",type:"tf",options:["True","False"],correct:0,explain:"Employee contributes 0.75%, employer contributes 3.25%, total 4% of gross wages — the rates revised in 2019."},
+      {q:"ESI applies to establishments with at least how many employees?",type:"mcq",options:["10 or more","20 or more","50 or more"],correct:0,explain:"ESI generally applies to establishments with 10 or more employees (some states require 20)."},
+      {q:"If an employee crosses the ₹21,000 ESI ceiling mid-year due to an increment, contributions stop immediately.",type:"tf",options:["True","False"],correct:1,explain:"The employee continues contributing till the end of the contribution period (April–Sep or Oct–Mar) in which the ceiling is crossed."},
+      {q:"ESI contribution periods are split into how many half-years?",type:"mcq",options:["Two: Apr–Sep and Oct–Mar","Three: 4-month each","One full year"],correct:0,explain:"Contribution periods: April 1 to September 30, and October 1 to March 31. Benefit periods follow with a lag."},
+      {q:"Professional Tax is a STATE-level tax in India.",type:"tf",options:["True","False"],correct:0,explain:"PT is levied by states (and some Union Territories), with each state setting its own slab and maximum cap."},
+      {q:"The Constitutional cap on Professional Tax that any state can levy on a person is:",type:"mcq",options:["₹1,500/year","₹2,500/year","₹5,000/year"],correct:1,explain:"Article 276(2) of the Constitution caps PT at ₹2,500 per person per year."},
+      {q:"Which of these states does NOT levy Professional Tax?",type:"mcq",options:["Maharashtra","Karnataka","Haryana"],correct:2,explain:"Haryana, Delhi (UT), and a few others do not levy PT. Maharashtra, Karnataka, West Bengal, Tamil Nadu, etc. do."},
+      {q:"PT is deducted from the employee and deposited by the employer to the state government.",type:"tf",options:["True","False"],correct:0,explain:"The employer deducts PT from salary and is responsible for monthly/half-yearly deposit and return filing."},
+      {q:"In Maharashtra, the maximum monthly PT for salaries above the threshold is:",type:"mcq",options:["₹100","₹200 (₹300 in Feb)","₹500"],correct:1,explain:"Maharashtra: ₹200/month, with ₹300 in February to total ₹2,500 annually — staying within the constitutional cap."},
+      {q:"Labour Welfare Fund (LWF) is mandatory in every Indian state.",type:"tf",options:["True","False"],correct:1,explain:"LWF is state-specific. States like Maharashtra, Karnataka, TN, Kerala, Gujarat, Punjab, Haryana, etc. have LWF; some states do not."},
+      {q:"Karnataka LWF is collected:",type:"mcq",options:["Monthly from each employee","Once a year (December)","Quarterly"],correct:1,explain:"Karnataka LWF is collected annually — typically deducted in the December salary cycle."},
+      {q:"ESI applies to employees earning their gross wage from regular cash payments — including HRA and overtime.",type:"tf",options:["True","False"],correct:0,explain:"ESI 'wages' include basic, DA, HRA, overtime (paid regularly), and other cash allowances. Reimbursements against bills are excluded."},
+      {q:"Which body administers the ESI scheme?",type:"mcq",options:["EPFO","ESIC","Income Tax Department"],correct:1,explain:"Employees' State Insurance Corporation (ESIC) administers the scheme under the ESI Act 1948."},
+      {q:"PT in West Bengal is deducted at how many slabs?",type:"mcq",options:["Single flat rate","Multiple progressive slabs based on income","No PT in WB"],correct:1,explain:"WB has progressive slabs ranging from nil to ₹200/month based on monthly salary brackets."},
+      {q:"ESI dispensaries and hospitals are funded entirely by the central government.",type:"tf",options:["True","False"],correct:1,explain:"ESI is self-funded through employer + employee contributions. Government's role is regulatory, not financial."},
+      {q:"Late ESI payment attracts which of the following?",type:"mcq",options:["Only a warning","12% p.a. interest plus damages","Immediate prosecution"],correct:1,explain:"12% per annum simple interest + damages of 5–25% based on the delay duration."},
+      {q:"PT registration is required at:",type:"mcq",options:["Once-per-company at HQ","Each state where the company has employees","Only the income tax department"],correct:1,explain:"PT is state-administered, so a separate registration is required in each state where employees are located."},
+      {q:"An employee earning ₹19,000 gross who gets ₹500 overtime in a month is now above the ESI ceiling.",type:"tf",options:["True","False"],correct:1,explain:"₹19,000 + ₹500 = ₹19,500, still below ₹21,000. Overtime IS counted toward ESI wages, but in this case it does not breach the ceiling."},
+      {q:"Which of these is the BEST description of LWF?",type:"mcq",options:["A state-level welfare fund used for worker welfare schemes","A central retirement benefit","An income tax saving"],correct:0,explain:"LWF is a small state-level levy used to fund welfare activities like medical aid, scholarships, and recreational facilities."}
+    ]
+  },
+
+  4: {
+    title: "Day 4 · Income Tax on Salary — Old vs New Regime",
+    passMark: 12,
+    questions: [
+      {q:"Under the New Tax Regime for FY 2025-26, income up to what limit attracts NIL tax (after rebate)?",type:"mcq",options:["₹7,00,000","₹12,00,000","₹15,00,000"],correct:1,explain:"For FY 2025-26, the Section 87A rebate makes income up to ₹12 lakh effectively zero-tax under the New Regime (₹12.75L with standard deduction)."},
+      {q:"The New Tax Regime is the DEFAULT for salaried employees in India.",type:"tf",options:["True","False"],correct:0,explain:"Per Section 115BAC (Finance Act 2023), the New Regime is the default. Employees must actively opt for the Old Regime if they wish."},
+      {q:"What is the standard deduction available under the New Tax Regime for FY 2025-26?",type:"mcq",options:["₹50,000","₹75,000","₹1,00,000"],correct:1,explain:"Standard deduction was raised to ₹75,000 under the New Regime in Budget 2024. Old Regime continues at ₹50,000."},
+      {q:"Section 87A rebate is available under both Old and New regimes, but with different limits.",type:"tf",options:["True","False"],correct:0,explain:"Yes — under Old Regime the rebate covers tax up to ₹12,500 (income up to ₹5L); under New Regime it covers tax up to make ₹12L effectively tax-free."},
+      {q:"Under the FY 2025-26 New Regime slabs, income between ₹4L and ₹8L is taxed at:",type:"mcq",options:["NIL","5%","10%"],correct:1,explain:"New Regime slabs FY 2025-26: 0–4L NIL, 4–8L 5%, 8–12L 10%, 12–16L 15%, 16–20L 20%, 20–24L 25%, above 24L 30%."},
+      {q:"Section 80C allows a maximum deduction of ₹1,50,000 — and is available under the New Regime too.",type:"tf",options:["True","False"],correct:1,explain:"Section 80C deductions (PPF, ELSS, LIC, etc.) are available ONLY under the Old Regime."},
+      {q:"HRA exemption under Section 10(13A) is available in:",type:"mcq",options:["Both regimes","Only New Regime","Only Old Regime"],correct:2,explain:"HRA exemption is one of the major deductions available only under the Old Regime."},
+      {q:"Health & Education Cess on income tax is currently:",type:"mcq",options:["3%","4%","5%"],correct:1,explain:"4% Health & Education Cess applies on (Income Tax + Surcharge) under both regimes."},
+      {q:"For an employee with income of ₹10L, the New Regime is generally more beneficial than the Old Regime if they have minimal investments.",type:"tf",options:["True","False"],correct:0,explain:"Without significant 80C, HRA, home loan deductions, the New Regime usually wins for typical salary earners."},
+      {q:"Under the Old Regime, the basic exemption for individuals below 60 is:",type:"mcq",options:["₹2,50,000","₹3,00,000","₹4,00,000"],correct:0,explain:"Old Regime: ₹2.5L basic exemption (below 60), ₹3L (60-80), ₹5L (80+)."},
+      {q:"A surcharge applies to taxpayers above ₹50 lakh of taxable income.",type:"tf",options:["True","False"],correct:0,explain:"Surcharge kicks in at >₹50L (10%), 1Cr (15%), 2Cr (25%), 5Cr (37% in old / 25% in new)."},
+      {q:"Which deduction is uniquely available under the NEW Tax Regime?",type:"mcq",options:["Section 80C","Section 80CCD(2) — employer NPS contribution","Section 80D"],correct:1,explain:"Employer's contribution to NPS under 80CCD(2) and a few specific items remain available even in the New Regime."},
+      {q:"The New Tax Regime offers a higher slab structure but fewer exemptions.",type:"tf",options:["True","False"],correct:0,explain:"That's the core trade-off — wider, lower-rate slabs but no 80C, HRA, LTA, home loan interest (self-occupied), etc."},
+      {q:"Marginal relief under the New Regime is available when income just crosses:",type:"mcq",options:["₹7 lakh","₹12 lakh","Both have marginal relief built in"],correct:2,explain:"Marginal relief ensures that an income marginally above ₹12L doesn't suddenly attract significantly higher tax — the additional tax is capped at the additional income."},
+      {q:"For an employee earning ₹15L (gross) with no deductions, the New Regime always saves more tax than the Old Regime.",type:"tf",options:["True","False"],correct:0,explain:"At ₹15L with zero deductions, New Regime is materially cheaper. Old Regime needs significant 80C+HRA+other deductions to compete."},
+      {q:"The choice of tax regime can be CHANGED every year for a salaried employee.",type:"tf",options:["True","False"],correct:0,explain:"Salaried (non-business) taxpayers can switch each year directly in the ITR. Business income taxpayers face restrictions."},
+      {q:"Under the Old Regime, what is the maximum deduction under Section 80D for self + family (below 60)?",type:"mcq",options:["₹15,000","₹25,000","₹50,000"],correct:1,explain:"₹25,000 for self/family + ₹25,000 for parents (₹50,000 if parents are senior citizens). All Old Regime only."},
+      {q:"Income from interest on EPF (within limits) is fully exempt.",type:"tf",options:["True","False"],correct:0,explain:"EPF interest is exempt provided employee contributions don't exceed ₹2.5 lakh per year (Finance Act 2021 rule)."},
+      {q:"Which of these is NOT a salary income head for tax purposes?",type:"mcq",options:["Basic salary","Bonus from employer","Capital gains on shares"],correct:2,explain:"Capital gains is a separate head of income. Basic and bonus are part of 'Salary' head u/s 17."},
+      {q:"Form 12BB is the document an employee submits to the EMPLOYER for claiming tax exemptions/deductions.",type:"tf",options:["True","False"],correct:0,explain:"Form 12BB is the prescribed declaration form for HRA, LTA, home loan interest, etc., submitted by the employee with proofs."}
+    ]
+  },
+
+  5: {
+    title: "Day 5 · TDS, Form 16/130 & 24Q",
+    passMark: 12,
+    questions: [
+      {q:"Under the Income Tax Act 1961, salary TDS is governed by which section?",type:"mcq",options:["Section 192","Section 194B","Section 195"],correct:0,explain:"Section 192 governs salary TDS under the 1961 Act. Under the new Income Tax Act 2025 (effective 1 Apr 2026), it becomes Section 392."},
+      {q:"TDS on salary is deducted at the average rate of tax estimated for the full financial year.",type:"tf",options:["True","False"],correct:0,explain:"Section 192 requires TDS at the average rate — total estimated annual tax divided by 12 (or remaining months)."},
+      {q:"Form 24Q is filed:",type:"mcq",options:["Annually","Quarterly","Monthly"],correct:1,explain:"Form 24Q is the quarterly TDS return filed for salary deductions, due by the end of the month following the quarter."},
+      {q:"Form 16 is issued by the employer to the employee for which purpose?",type:"mcq",options:["As proof of TDS deducted on salary","As an offer letter","For PF withdrawal"],correct:0,explain:"Form 16 is the TDS certificate for salary income, used by employees while filing their ITR."},
+      {q:"Form 16 has been replaced by Form 130 under the Income Tax Act 2025.",type:"tf",options:["True","False"],correct:0,explain:"Yes. Effective 1 April 2026, Form 16 is replaced by Form 130, which has a 3-part structure (deductor details, TDS reconciliation, salary computation)."},
+      {q:"Form 16 must be issued to employees by which date?",type:"mcq",options:["31 March","15 June","31 July"],correct:1,explain:"Form 16 (now Form 130) must be issued by 15 June following the financial year, after Q4 24Q is filed."},
+      {q:"The TRACES portal is used by:",type:"mcq",options:["Employees only","Deductors (employers) and deductees","Banks only"],correct:1,explain:"TRACES (TDS Reconciliation Analysis and Correction Enabling System) is used by deductors to file/correct returns and by deductees to view 26AS."},
+      {q:"Form 26AS shows the TDS credited to the employee's PAN.",type:"tf",options:["True","False"],correct:0,explain:"Yes. Form 26AS (and AIS/TIS) are tax credit statements showing TDS, advance tax, refunds, and high-value transactions."},
+      {q:"If an employee submits Form 12BB late, the employer can:",type:"mcq",options:["Refuse to consider any deductions","Adjust TDS in subsequent months","Charge a penalty"],correct:1,explain:"Employers typically allow declarations in cycles and can true-up TDS in remaining months once proofs come in (usually by Jan/Feb)."},
+      {q:"TDS on salary has to be deposited to the government by the:",type:"mcq",options:["7th of the following month","Last date of the same month","Once a year"],correct:0,explain:"TDS deposited by 7th of the next month (30 April for March deductions)."},
+      {q:"A salaried employee with no other income and TDS fully deducted must still file an ITR if total income exceeds the basic exemption.",type:"tf",options:["True","False"],correct:0,explain:"Even if TDS covers the tax, ITR filing is mandatory once gross total income exceeds the basic exemption limit."},
+      {q:"Which annexure of Form 24Q contains employee-wise salary breakup and tax computation for the FY?",type:"mcq",options:["Annexure I","Annexure II","Annexure III"],correct:1,explain:"Annexure II of Form 24Q (filed in Q4) contains the detailed salary and tax computation per employee for the full year."},
+      {q:"Late filing of Form 24Q attracts a fee under Section 234E.",type:"tf",options:["True","False"],correct:0,explain:"₹200 per day late filing fee under Section 234E, capped at the TDS amount itself."},
+      {q:"The Income Tax Act 2025 consolidates ALL TDS provisions into:",type:"mcq",options:["Section 192 only","Section 393 (with tabular schedule)","Multiple scattered sections"],correct:1,explain:"Section 393 of the Act 2025 is the consolidated TDS provision, with a tabular schedule covering all categories. Salary specifically is Section 392."},
+      {q:"An employer who fails to deduct TDS on salary can be considered an 'assessee in default' under Section 201.",type:"tf",options:["True","False"],correct:0,explain:"Yes. Section 201 (1961 Act) treats the deductor as assessee in default, with interest at 1% (failure to deduct) or 1.5% (failure to deposit)."},
+      {q:"The standard deduction of ₹75,000 is automatically considered in TDS computation by the employer under New Regime.",type:"tf",options:["True","False"],correct:0,explain:"Yes — standard deduction is mandatory and automatic under both regimes; the employer applies it before computing TDS."},
+      {q:"In Form 24Q's Q4 filing, what's the most critical reconciliation?",type:"mcq",options:["Total salary paid vs Form 16/130 issued","Bank account number","Office address"],correct:0,explain:"Q4 reconciles full-year salary, deductions claimed, and tax deducted with what is reported in each employee's Form 16/130."},
+      {q:"TDS on salary is to be deducted at the time of:",type:"mcq",options:["Payment of salary","Salary credit, irrespective of payment","Issuance of Form 16"],correct:0,explain:"Section 192 requires TDS at the time of payment (unlike most other TDS sections that trigger on credit or payment, whichever is earlier)."},
+      {q:"A new employee joining mid-year must furnish Form 12B to the new employer.",type:"tf",options:["True","False"],correct:0,explain:"Form 12B contains details of previous employment salary and TDS, helping the new employer compute correct TDS for the year."},
+      {q:"The Income Tax Act 2025 introduces a single 'Tax Year' concept replacing Financial Year and Assessment Year.",type:"tf",options:["True","False"],correct:0,explain:"Yes — one of the most user-friendly reforms. Tax Year 2026-27 (April 2026 to March 2027) replaces the FY/AY split."}
+    ]
+  },
+
+  6: {
+    title: "Day 6 · Income Tax Act 2025 — What Changes",
+    passMark: 12,
+    questions: [
+      {q:"The Income Tax Act 2025 comes into effect from:",type:"mcq",options:["1 April 2025","1 April 2026","1 January 2027"],correct:1,explain:"The Income Tax Act 2025 (replacing the 1961 Act) becomes effective for transactions on/after 1 April 2026 — i.e., Tax Year 2026-27."},
+      {q:"The Income Tax Act 2025 changes the tax SLABS substantially.",type:"tf",options:["True","False"],correct:1,explain:"The reform is largely structural. Tax slabs and rates remain the same as FY 2025-26 — what changes is section numbering, language, and structure."},
+      {q:"How many sections does the Income Tax Act 2025 contain (vs ~819 in the 1961 Act)?",type:"mcq",options:["Around 300","Around 536","Around 1000"],correct:1,explain:"The 2025 Act has 536 sections across 23 chapters — a substantial reduction in volume and complexity."},
+      {q:"Under the Act 2025, salary TDS will be governed by:",type:"mcq",options:["Section 192","Section 392","Section 192B"],correct:1,explain:"Section 192 (1961) is replaced by Section 392 (2025) for salary TDS. Same mechanics, new section number."},
+      {q:"The Act 2025 introduces a unified 'Tax Year' concept.",type:"tf",options:["True","False"],correct:0,explain:"Yes — one of the most user-friendly reforms. Tax Year replaces the awkward FY/AY split."},
+      {q:"For FY 2025-26 (income earned 1 Apr 2025 – 31 Mar 2026), which Act applies for ITR filing?",type:"mcq",options:["Income Tax Act 1961","Income Tax Act 2025","Both — taxpayer's choice"],correct:0,explain:"Income earned in FY 2025-26 is filed under the 1961 Act. The 2025 Act applies from FY 2026-27 (Tax Year 2026-27)."},
+      {q:"Form 16 is renumbered to Form 130 under the Act 2025.",type:"tf",options:["True","False"],correct:0,explain:"Yes — Form 16 → Form 130 with a 3-part structure (deductor/deductee, TDS reconciliation, salary computation)."},
+      {q:"Form 15G/15H are merged into a single new form numbered:",type:"mcq",options:["Form 121","Form 130","Form 24Q"],correct:0,explain:"Forms 15G and 15H are consolidated into the new Form 121 under the Act 2025."},
+      {q:"All TDS sections of the 1961 Act (192–194T) are consolidated under which provision in the 2025 Act?",type:"mcq",options:["Section 392","Section 393","Section 202"],correct:1,explain:"Section 393 of the Act 2025 is the consolidated TDS provision with a tabular schedule covering all payment categories."},
+      {q:"The New Tax Regime is governed by which section under the Act 2025?",type:"mcq",options:["Section 115BAC","Section 202","Section 392"],correct:1,explain:"Section 115BAC (1961) → Section 202 (2025) for the New Tax Regime."},
+      {q:"The Income Tax Department has provided a section-mapping utility to translate 1961 references to 2025 references.",type:"tf",options:["True","False"],correct:0,explain:"Yes — a utility on incometax.gov.in helps map 1961 sections to their 2025 equivalents for legacy documents."},
+      {q:"Under the Act 2025, the TDS threshold limit on interest income (for senior citizens etc.) has been increased to:",type:"mcq",options:["₹50,000","₹1,00,000","₹2,00,000"],correct:1,explain:"The Act 2025 raises the TDS threshold on interest to ₹1 lakh, up from ₹50,000 earlier."},
+      {q:"For payroll software vendors, the most urgent technical change is:",type:"mcq",options:["Updating section references in payslips, Form 16/130, 24Q","Changing all tax rates","Removing PF entirely"],correct:0,explain:"Section references in salary computation worksheets, payslip footnotes, and Form 16/130 templates need updating to reflect Section 392/393 etc."},
+      {q:"The Act 2025 increases compliance burden by adding more forms and procedures.",type:"tf",options:["True","False"],correct:1,explain:"The Act 2025 simplifies — consolidates forms, reduces sections, and aims for digital, faceless administration."},
+      {q:"Under the 2025 Act, the basic exemption under New Regime is:",type:"mcq",options:["₹2,50,000","₹4,00,000","₹5,00,000"],correct:1,explain:"₹4,00,000 basic exemption under New Regime, same as FY 2025-26 (no rate change carried into Tax Year 2026-27)."},
+      {q:"The phrase 'previous year' is preserved in the Income Tax Act 2025.",type:"tf",options:["True","False"],correct:1,explain:"It's been replaced by 'Tax Year' — one consolidated concept eliminating the previous-year/assessment-year confusion."},
+      {q:"A payroll system going live on 1 April 2026 should reference:",type:"mcq",options:["Section 192 for salary TDS","Section 392 for salary TDS","Both"],correct:1,explain:"From 1 April 2026, all salary TDS references in systems and documents should point to Section 392."},
+      {q:"Charitable institutions and NPOs are now governed by:",type:"mcq",options:["Multiple scattered sections","One dedicated chapter","Removed entirely"],correct:1,explain:"The Act 2025 consolidates all NPO/charity rules into a single dedicated chapter for clarity."},
+      {q:"Old tax regime continues to be available under the Act 2025.",type:"tf",options:["True","False"],correct:0,explain:"Yes — both regimes continue. New is default; old can be opted into. The Act 2025 preserves both options."},
+      {q:"The Act 2025 was passed by Parliament with the goal of:",type:"mcq",options:["Increasing tax rates","Simplifying language and reducing complexity","Introducing a wealth tax"],correct:1,explain:"Aim: simplification — clearer language, fewer sections, digital-first compliance, no rate changes."}
+    ]
+  },
+
+  7: {
+    title: "Day 7 · Labour Codes & The 50% Rule",
+    passMark: 12,
+    questions: [
+      {q:"The four Labour Codes were notified to come into force from:",type:"mcq",options:["1 April 2025","21 November 2025","1 January 2026"],correct:1,explain:"All four Labour Codes were notified effective 21 November 2025, repealing 29 central labour laws."},
+      {q:"How many Labour Codes consolidate the older labour laws?",type:"mcq",options:["Two","Four","Six"],correct:1,explain:"Four Codes: Code on Wages 2019, Industrial Relations Code 2020, Code on Social Security 2020, OSH Code 2020."},
+      {q:"Under the Code on Wages, basic + DA + retaining allowance must be at least what % of total remuneration?",type:"mcq",options:["30%","50%","70%"],correct:1,explain:"The 50% rule — if statutory wages are less than 50% of total remuneration, the excess of allowances over 50% is added back to wages for statutory calculations."},
+      {q:"The 50% rule typically reduces an employee's PF and gratuity contributions.",type:"tf",options:["True","False"],correct:1,explain:"It INCREASES PF and gratuity provisions, because the wage base on which they're computed becomes larger."},
+      {q:"The 29 older central labour laws (like Payment of Wages Act, Minimum Wages Act, ID Act, Factories Act) were repealed when the Codes came into force.",type:"tf",options:["True","False"],correct:0,explain:"Yes — 29 central laws stand repealed effective 21 November 2025. The Codes consolidate them."},
+      {q:"Under the new wage definition, which of these is EXCLUDED from 'wages'?",type:"mcq",options:["HRA","Conveyance allowance","Both HRA and conveyance"],correct:2,explain:"Excluded items: HRA, conveyance, overtime, bonus, statutory contributions, gratuity payable, retrenchment compensation, etc. But if these exceed 50% of remuneration, the excess is added back."},
+      {q:"Final central rules under the four Codes are expected to be notified around:",type:"mcq",options:["1 April 2026","1 January 2027","Already notified in 2025"],correct:0,explain:"Draft central rules were issued 30 December 2025 with consultation periods ending Jan/Feb 2026. Final notification was targeted for around 1 April 2026."},
+      {q:"State governments must also notify their own state rules under each Code.",type:"tf",options:["True","False"],correct:0,explain:"Labour is a concurrent subject. Each state must notify state rules covering inspections, registers, sector exemptions, etc."},
+      {q:"Under the Industrial Relations Code, a worker re-skilling fund equivalent to how many days' wages must be deposited by the employer for retrenched workers?",type:"mcq",options:["7 days","15 days","30 days"],correct:1,explain:"Employers must deposit 15 days' last-drawn wages (or as prescribed) into the Worker Re-Skilling Fund for retrenched workers."},
+      {q:"The MoLE FAQ dated 16 March 2026 confirmed that overtime allowance is included in the 50% wage floor computation.",type:"tf",options:["True","False"],correct:0,explain:"Yes — the FAQ explicitly clarified that overtime is part of the computation when applying the 50% rule."},
+      {q:"Under the Code on Wages, what is the maximum normal working hours per day?",type:"mcq",options:["6 hours","8 hours","10 hours"],correct:1,explain:"8 hours per day / 48 hours per week. Beyond this, overtime is paid at TWICE the normal wage rate."},
+      {q:"Standing orders under the Industrial Relations Code apply to establishments with workers numbering at least:",type:"mcq",options:["100","300","500"],correct:1,explain:"The threshold for standing orders / retrenchment / lay-off government permission was raised to 300 under the IR Code (from 100 earlier)."},
+      {q:"Annual performance-based incentives form part of 'wages' for Labour Code computations.",type:"tf",options:["True","False"],correct:1,explain:"MoLE confirmed that annual performance-based incentives do NOT form part of wages — they remain outside the 50% computation."},
+      {q:"Under the Code on Social Security, fixed-term employees are now eligible for gratuity after:",type:"mcq",options:["5 years","1 year","Not eligible at all"],correct:1,explain:"Fixed-term employees get pro-rata gratuity after 1 year of service under the SS Code — a major shift from the 5-year norm for permanent employees."},
+      {q:"Women workers can now work at night under the OSH Code subject to:",type:"mcq",options:["Total ban","Their consent and safety conditions","Special permit only"],correct:1,explain:"Women may work between 7 PM and 6 AM with their consent, subject to safety, transportation, and welfare provisions."},
+      {q:"The Code on Social Security recognises gig and platform workers.",type:"tf",options:["True","False"],correct:0,explain:"The SS Code provides for a separate scheme for gig and platform workers, although the operational scheme is yet to be fully notified."},
+      {q:"Which of these is the SINGLE most impactful change for HR/payroll teams from the Labour Codes?",type:"mcq",options:["The 50% wages rule","Renaming of laws","Reduced number of forms"],correct:0,explain:"The 50% rule has the largest financial and operational impact — restructuring CTC, increasing PF/gratuity outflow, and recalculating bonus/encashment."},
+      {q:"Remuneration in kind (e.g., free housing, food) up to what percentage of total remuneration is treated as wages under the Code?",type:"mcq",options:["10%","15%","25%"],correct:1,explain:"Up to 15% of remuneration in kind is treated as wages. The rest may be treated separately."},
+      {q:"Supervisory and managerial employees are completely excluded from overtime entitlements.",type:"tf",options:["True","False"],correct:1,explain:"Per the MoLE FAQ (March 2026), any employee whose minimum wage is fixed under the Code — including supervisory/managerial — is eligible for overtime."},
+      {q:"The Code on Wages was originally notified in:",type:"mcq",options:["2019","2020","2025"],correct:0,explain:"Code on Wages 2019 (notified 8 August 2019). The other three Codes (IR, SS, OSH) were notified in 2020. All four came into force 21 November 2025."}
+    ]
+  },
+
+  8: {
+    title: "Day 8 · Gratuity, Leave, Bonus & F&F",
+    passMark: 12,
+    questions: [
+      {q:"For permanent employees, statutory gratuity becomes payable after how many years of continuous service?",type:"mcq",options:["3 years","5 years","10 years"],correct:1,explain:"5 years of continuous service is the minimum, except in case of death or disablement (no minimum then)."},
+      {q:"Gratuity formula under the Payment of Gratuity Act is: (15/26) × Last drawn wages × Years of service.",type:"tf",options:["True","False"],correct:0,explain:"Yes — for employees covered under the Act. 15/26 represents 15 days' pay per completed year, with 26 working days/month."},
+      {q:"What is the maximum tax-exempt gratuity ceiling under Section 10(10)?",type:"mcq",options:["₹10 lakh","₹20 lakh","₹50 lakh"],correct:1,explain:"₹20 lakh is the current tax-free gratuity limit (raised from ₹10L in 2018)."},
+      {q:"Under the Code on Social Security 2020, fixed-term employees are eligible for gratuity after:",type:"mcq",options:["5 years","1 year","No gratuity"],correct:1,explain:"Pro-rata gratuity after 1 year of service for FTEs — a key worker-friendly change in the SS Code."},
+      {q:"Leave encashment received at retirement is fully tax-free for all employees.",type:"tf",options:["True","False"],correct:1,explain:"Government employees get full exemption. Non-government: capped at ₹25 lakh (Budget 2023 increase) under Section 10(10AA)."},
+      {q:"Statutory bonus is payable to employees earning what monthly wage at most?",type:"mcq",options:["₹7,000","₹21,000","No upper limit"],correct:1,explain:"Payment of Bonus Act applies to employees earning ≤ ₹21,000/month, with bonus calculated on actual wage capped at ₹7,000 (or minimum wage, whichever is higher)."},
+      {q:"Minimum statutory bonus is 8.33% and maximum is 20% of qualifying wages.",type:"tf",options:["True","False"],correct:0,explain:"Yes — based on the company's allocable surplus. Minimum 8.33% even if there's no profit (it's effectively a deferred wage)."},
+      {q:"Full-and-Final Settlement under the new Labour Code rules must be completed within:",type:"mcq",options:["30 days","2 working days","60 days"],correct:1,explain:"Effective 1 April 2026, all dues must be settled within 2 working days of the last day of employment — a major change from the 30–45 day norm."},
+      {q:"F&F includes which of these?",type:"mcq",options:["Pending salary, leave encashment, gratuity (if eligible), notice pay","Only the last month's salary","Only gratuity"],correct:0,explain:"F&F covers ALL pending dues: salary, leave encashment, gratuity, bonus accrued, reimbursements, notice pay/recovery."},
+      {q:"An employee who resigns after 4.5 years is NOT eligible for gratuity under the Payment of Gratuity Act.",type:"tf",options:["True","False"],correct:1,explain:"Under most case law, 4 years and 240 days qualifies as 5 years for gratuity — but strictly speaking, 4.5 doesn't unless the company policy is more generous."},
+      {q:"Notice pay deducted from F&F is taxable in the hands of the employee.",type:"tf",options:["True","False"],correct:0,explain:"Notice pay deduction reduces the salary received — it does not constitute additional taxable income."},
+      {q:"Earned Leave / Privilege Leave generally accrues at:",type:"mcq",options:["1 day per month worked","No statutory minimum","2 days per month worked"],correct:0,explain:"Under most state Shops & Establishments Acts, EL accrues @ 1 day per 20 days worked (~1 day per month). The Codes maintain similar norms."},
+      {q:"Casual Leave (CL) is a statutory leave in every Indian state.",type:"tf",options:["True","False"],correct:1,explain:"CL is industry/state practice — not a uniform statutory entitlement. Privilege/Earned Leave is the statutory minimum."},
+      {q:"Death gratuity payable to nominees has a maximum tax-exempt limit of:",type:"mcq",options:["₹20 lakh","Fully exempt with no limit","₹10 lakh"],correct:1,explain:"Death gratuity (received by family) is fully exempt from tax for the recipient under Section 10(19) / 10(10)."},
+      {q:"When computing F&F, which of these is typically RECOVERED from the employee?",type:"mcq",options:["Outstanding loans/advances","Gratuity","Leave encashment"],correct:0,explain:"Loans, salary advances, asset recovery (laptop deposit, etc.), excess leave taken — these are recovered. Gratuity and EL are paid OUT."},
+      {q:"Sick Leave (SL) under most Shops & Establishment Acts is granted at how many days per year?",type:"mcq",options:["12 days","6–7 days","30 days"],correct:1,explain:"Most state S&E Acts: ~6–7 days per year, often without proof for short durations. Varies by state."},
+      {q:"Performance bonus (variable pay) paid annually is treated as 'wages' under the Code on Wages.",type:"tf",options:["True","False"],correct:1,explain:"MoLE FAQ (March 2026) clarifies that annual performance-based incentives do NOT form part of 'wages' under the Code."},
+      {q:"For gratuity calculation, 'wages' under the Code on Social Security 2020 means:",type:"mcq",options:["Basic + DA only","Statutory wage definition (basic + DA + retaining)","Gross salary"],correct:1,explain:"Gratuity uses the new statutory wage definition — Basic + DA + Retaining (subject to the 50% rule cascade)."},
+      {q:"In an employee's death, gratuity is payable irrespective of completed service.",type:"tf",options:["True","False"],correct:0,explain:"Yes — the 5-year minimum is waived in case of death or permanent disablement; gratuity is payable on actual service completed."},
+      {q:"Which of these is the BEST description of a payroll PM's responsibility regarding F&F?",type:"mcq",options:["Build/maintain F&F workflow with all heads, statutory compliance, 2-day SLA","Only design the salary slip","Only handle PF withdrawal"],correct:0,explain:"The PM owns end-to-end F&F: the workflow, all earning/recovery heads, statutory compliance (gratuity, leave encashment tax, full TDS), and the 2-day SLA."}
+    ]
+  },
+
+  9: {
+    title: "Day 9 · State Compliance & Special Components",
+    passMark: 12,
+    questions: [
+      {q:"Professional Tax slabs in Karnataka apply to monthly salaries above:",type:"mcq",options:["₹15,000","₹25,000","₹40,000"],correct:1,explain:"In Karnataka, monthly salary >₹25,000 attracts ₹200/month PT (₹2,400 annually — within the constitutional cap of ₹2,500)."},
+      {q:"All states in India levy Professional Tax.",type:"tf",options:["True","False"],correct:1,explain:"Several states/UTs (Haryana, Delhi, Rajasthan, UP, etc.) do NOT levy PT. PT is state-specific."},
+      {q:"Minimum wages in India are revised periodically through:",type:"mcq",options:["Parliament","Central + State VDA notifications","Income tax department"],correct:1,explain:"Variable Dearness Allowance (VDA) revisions happen typically half-yearly (April and October) at central and state level."},
+      {q:"Under the Shops & Establishments Act, working hours are typically capped at:",type:"mcq",options:["6 per day","9 per day / 48 per week","12 per day"],correct:1,explain:"Most state S&E Acts limit work to 9 hours/day and 48 hours/week, with overtime at 2x wages beyond that."},
+      {q:"Perquisites such as a company car for personal use are valued under:",type:"mcq",options:["Rule 3 of Income Tax Rules","Section 80C","Code on Wages"],correct:0,explain:"Rule 3 of the Income Tax Rules prescribes valuation of perquisites — flat per-month rates for cars based on engine capacity, etc."},
+      {q:"ESOPs are taxed at the time of exercise as a perquisite, and again as capital gains at sale.",type:"tf",options:["True","False"],correct:0,explain:"Yes — two-stage taxation: perquisite (FMV minus exercise price) at allotment + capital gains (sale price minus FMV) at sale."},
+      {q:"Telephone, internet, and broadband reimbursements provided by employer for office use are typically:",type:"mcq",options:["Fully taxable","Tax-exempt as a non-monetary perquisite","Taxed at 50%"],correct:1,explain:"If used substantially for office work and against actual bills, telephone/internet reimbursement is exempt as a non-monetary perquisite."},
+      {q:"Maharashtra requires PT to be paid based on:",type:"mcq",options:["Annual wage","Monthly wage slab","Quarterly wage average"],correct:1,explain:"Maharashtra PT is based on monthly salary slabs — ₹0 / ₹175 / ₹200 (₹300 in Feb) — totalling up to ₹2,500/year."},
+      {q:"The Tamil Nadu Labour Welfare Fund (TNLWF) is collected:",type:"mcq",options:["Monthly","Half-yearly (June & December)","Annually"],correct:1,explain:"TNLWF: ₹20 employee + ₹40 employer contribution, collected half-yearly."},
+      {q:"LTA (Leave Travel Allowance) exemption is available under both tax regimes.",type:"tf",options:["True","False"],correct:1,explain:"LTA exemption u/s 10(5) is available ONLY under the Old Regime."},
+      {q:"For ESOP, the perquisite tax is computed as:",type:"mcq",options:["FMV at exercise minus exercise price","Sale price minus exercise price","Always full FMV"],correct:0,explain:"Perquisite = FMV on exercise date − exercise price (the 'discount' the employee enjoys). The employer adds this to salary and deducts TDS."},
+      {q:"State minimum wages override central minimum wages when the state rate is higher.",type:"tf",options:["True","False"],correct:0,explain:"Yes — the higher of the two applies. The Code on Wages preserves the floor wage concept; the higher of state or floor wage prevails."},
+      {q:"Free meals provided in office canteens are tax-free up to:",type:"mcq",options:["₹50 per meal","₹100 per meal","No limit"],correct:0,explain:"Tax-free if cost to employer is up to ₹50 per meal during working hours, per Rule 3(7)(iii)."},
+      {q:"Children's Education Allowance is exempt up to:",type:"mcq",options:["₹100/month per child, max 2 children","₹500/month, no limit","₹1,000/month per child"],correct:0,explain:"Old Regime only: ₹100/month/child for max 2 children + ₹300/month for hostel. Modest exemption; rarely consequential."},
+      {q:"The Maharashtra Shops & Establishments Act applies to commercial establishments and must be registered within how many days of starting business?",type:"mcq",options:["7 days","30 days (in Maharashtra)","6 months"],correct:1,explain:"Maharashtra requires registration within 30 days of starting business operations."},
+      {q:"Karnataka does NOT have a Labour Welfare Fund.",type:"tf",options:["True","False"],correct:1,explain:"Karnataka HAS an LWF (₹20 employee + ₹40 employer, deducted in December)."},
+      {q:"Phantom stock or RSUs are taxed as:",type:"mcq",options:["Salary perquisite at vesting/realisation","Always as capital gains","Tax-free"],correct:0,explain:"RSUs are taxed as salary perquisite when they vest (FMV at vest), and any subsequent appreciation is capital gains at sale."},
+      {q:"State-level professional tax filing frequency varies by state.",type:"tf",options:["True","False"],correct:0,explain:"Yes — Maharashtra requires monthly PT remittance, Karnataka monthly + annual return, West Bengal monthly + annual return, etc."},
+      {q:"Driver's salary paid by the employer for an employee with a company car is treated as:",type:"mcq",options:["Part of perquisite valuation","Tax-free","A separate income"],correct:0,explain:"If the employer provides a chauffeur, additional ₹900/month is added to perquisite value (Rule 3(2))."},
+      {q:"Which of the following is a BEST PM design principle for state compliance modules in payroll software?",type:"mcq",options:["Hardcode rates and update annually","Build a state-rule master with effective dates and audit trail","Only support central rules"],correct:1,explain:"State rules change often (VDA, PT slabs, LWF). A configurable master with effective dates, audit logs, and challan automation is the only sustainable design."}
+    ]
+  },
+
+  10: {
+    title: "Day 10 · Payroll Operations, Audit & Year-End",
+    passMark: 12,
+    questions: [
+      {q:"The TDS deposit due date for tax deducted in any month is:",type:"mcq",options:["Last day of the same month","7th of the following month","15th of the following month"],correct:1,explain:"TDS deposit: 7th of the following month. For March, the due date is 30 April."},
+      {q:"PF (ECR) deposit is due by the 15th of the following month.",type:"tf",options:["True","False"],correct:0,explain:"Yes — PF/ECR by 15th of the next month. ESI also by 15th. PT due dates vary by state."},
+      {q:"Form 24Q for Q4 (Jan-Mar) is filed by:",type:"mcq",options:["31 March","31 May","30 June"],correct:1,explain:"24Q Q4 is due 31 May, with Annexure II containing employee-wise full-year salary and tax computation."},
+      {q:"The annual PF return (Form 3A/6A) was abolished after introduction of ECR.",type:"tf",options:["True","False"],correct:0,explain:"Yes — once ECR was made compulsory, the older annual returns (3A/6A) were dispensed with."},
+      {q:"Form 26AS for an employee can be downloaded from:",type:"mcq",options:["EPFO portal","Income Tax e-filing portal / TRACES","ESIC portal"],correct:1,explain:"26AS is accessible from the IT e-filing portal. AIS (Annual Information Statement) and TIS are also available there."},
+      {q:"During year-end closure, the most important reconciliation is:",type:"mcq",options:["Salary register vs ECR vs 24Q vs Form 16/130","Only ECR vs portal","Only Form 16 totals"],correct:0,explain:"Four-way reconciliation: salary register + ECR (PF) + 24Q (TDS) + Form 16/130. All must tie out."},
+      {q:"Investment proofs from employees should typically be collected by:",type:"mcq",options:["End of January","End of February (mid-year)","No specific deadline"],correct:0,explain:"Most companies collect proofs by end-Jan, finalise tax computation in Feb, true-up TDS in Mar."},
+      {q:"Year-end closure for FY 2025-26 must verify the PF basic + DA wage base across all 12 months matches what is reported in monthly ECRs.",type:"tf",options:["True","False"],correct:0,explain:"This is the EPFO Mismatch Trap — many companies miss this and face notices when EPFO compares ECR with their internal payroll register."},
+      {q:"Which of these typically does NOT happen in monthly payroll operations?",type:"mcq",options:["LOP/exception capture","Statutory deposit","Full ITR filing"],correct:2,explain:"ITR is filed by the employee (or jointly with consultants) annually. Monthly payroll handles LOP, exceptions, deposits, and slip generation."},
+      {q:"A PT challan in Maharashtra (PTRC) is filed:",type:"mcq",options:["Monthly","Quarterly","Annually only"],correct:0,explain:"Maharashtra PT (PTRC for employer) is monthly; PTEC (own PT) is annual."},
+      {q:"Failure to file Form 24Q on time attracts a fee under:",type:"mcq",options:["Section 234E (₹200/day)","Section 234A","Section 80C"],correct:0,explain:"₹200 per day late filing fee under Section 234E, capped at the TDS amount."},
+      {q:"FY closure is the appropriate time to audit salary structures for the 50% wages rule compliance.",type:"tf",options:["True","False"],correct:0,explain:"Year-end is critical to audit CTC structures against the new 50% rule (Code on Wages 2019, effective 21 Nov 2025)."},
+      {q:"Common payroll errors in 2026 include incorrect PF wage base, missed Form 130 timelines, and 50%-rule non-compliance.",type:"tf",options:["True","False"],correct:0,explain:"All three are top errors flagged by payroll consultants in 2026 closure cycles."},
+      {q:"What is AIS (Annual Information Statement)?",type:"mcq",options:["A new payslip format","A consolidated taxpayer profile from IT Department","An ESIC report"],correct:1,explain:"AIS shows all financial info reported to the IT Department (TDS, interest, dividends, share trades, foreign remittances) for a PAN. Used to verify ITR."},
+      {q:"Form 16/130 must be issued by:",type:"mcq",options:["31 March","15 June","31 July"],correct:1,explain:"By 15 June following the FY (after Q4 24Q filing on 31 May)."},
+      {q:"A payroll PM should design exception workflows for:",type:"mcq",options:["LOP, mid-month joiner/leaver, retro changes, statutory variations","Only happy paths","Just monthly cycle"],correct:0,explain:"Exception handling defines payroll quality — LOP, retros, mid-cycle changes, regime switch, ceiling crossings, late proofs, etc."},
+      {q:"Statutory due date for ESIC return is:",type:"mcq",options:["7th of month","15th of following month","Quarterly"],correct:1,explain:"ESIC challan-cum-return is due by 15th of the next month, same as PF."},
+      {q:"In a payroll audit, the auditor will typically check:",type:"mcq",options:["Statutory compliance, salary structure, F&F, TDS reconciliation","Only the HR policy document","Only employee bank details"],correct:0,explain:"A typical audit covers: structures vs 50% rule, statutory deposits vs filings, TDS reco, Form 16/130 issuance, F&F closure, leave/gratuity provisioning."},
+      {q:"From 1 April 2026, payroll software must reference Section 392 (not 192) for salary TDS computation.",type:"tf",options:["True","False"],correct:0,explain:"Yes — under the Income Tax Act 2025, Section 192 → Section 392 for salary TDS. All references in payslips, Form 16/130, and 24Q workings must be updated."},
+      {q:"As a payroll PM, the SINGLE most strategic priority for FY 2026-27 closure is:",type:"mcq",options:["Income Tax Act 2025 readiness + 50% rule compliance + Form 130 issuance","Office party planning","Buying new laptops"],correct:0,explain:"The combination of the new IT Act (effective 1 Apr 2026) and the operational Labour Codes creates the single biggest payroll readiness mandate in three decades."}
+    ]
+  },
+
+  final: {
+    title: "Capstone Exam · India Payroll Expert Certification",
+    passMark: 24,
+    questions: [
+      {q:"Under FY 2025-26 New Tax Regime, the income slab attracting 15% tax is:",type:"mcq",options:["₹8L–₹12L","₹12L–₹16L","₹16L–₹20L"],correct:1,explain:"FY 2025-26 New Regime: ₹12L–₹16L is taxed at 15%."},
+      {q:"The Income Tax Act 2025 unifies all TDS provisions under Section 393.",type:"tf",options:["True","False"],correct:0,explain:"Yes — all TDS sections of the 1961 Act are consolidated under Section 393 (with salary specifically at Section 392)."},
+      {q:"EPF wage ceiling currently stands at:",type:"mcq",options:["₹6,500","₹15,000","₹21,000"],correct:1,explain:"₹15,000 since 2014. The Supreme Court has ordered review for potential increase to ₹21,000 or ₹25,000 within 4 months (as of January 2026)."},
+      {q:"Maximum monthly EPS contribution per employee is:",type:"mcq",options:["₹1,800","₹1,250","₹2,500"],correct:1,explain:"8.33% × ₹15,000 ceiling = ₹1,250 monthly cap."},
+      {q:"ESI applies to employees earning gross monthly wages up to:",type:"mcq",options:["₹15,000","₹21,000","₹25,000"],correct:1,explain:"₹21,000 — the ESI ceiling. ₹25,000 applies for persons with disability."},
+      {q:"All four Labour Codes came into force on:",type:"mcq",options:["21 November 2025","1 April 2026","21 December 2025"],correct:0,explain:"Notified effective 21 November 2025, repealing 29 central labour laws."},
+      {q:"Under the Code on Wages, statutory wages must be at least what % of total remuneration?",type:"mcq",options:["30%","50%","70%"],correct:1,explain:"50% rule. Excess of allowances over 50% is added back to wages for statutory calculations."},
+      {q:"Form 16 has been replaced by Form 130 with a 3-part structure under the Income Tax Act 2025.",type:"tf",options:["True","False"],correct:0,explain:"Yes — Part A (deductor/deductee), Part B (TDS reconciliation), Part C (salary computation)."},
+      {q:"The standard deduction under New Regime for FY 2025-26 is:",type:"mcq",options:["₹50,000","₹75,000","₹1,00,000"],correct:1,explain:"₹75,000 — raised from ₹50,000 in Budget 2024."},
+      {q:"Section 87A rebate makes income up to ₹12 lakh effectively tax-free under the New Regime for FY 2025-26.",type:"tf",options:["True","False"],correct:0,explain:"With ₹75K standard deduction, salaried up to ₹12.75L pay zero tax."},
+      {q:"Under the 1961 Act, salary TDS is governed by:",type:"mcq",options:["Section 192","Section 194B","Section 200"],correct:0,explain:"Section 192 (Act 1961) → Section 392 (Act 2025)."},
+      {q:"PF is calculated on:",type:"mcq",options:["Gross salary","Basic + DA + Retaining Allowance","CTC"],correct:1,explain:"Per the labour code definition. HRA, conveyance, OT, bonus excluded — but if allowances exceed 50%, the excess is added back."},
+      {q:"Fixed-term employees are eligible for gratuity after how many years under the SS Code?",type:"mcq",options:["1 year","3 years","5 years"],correct:0,explain:"FTEs get pro-rata gratuity after 1 year — a major SS Code change from the 5-year norm."},
+      {q:"Income Tax Act 2025 introduces the unified concept of Tax Year replacing FY/AY.",type:"tf",options:["True","False"],correct:0,explain:"Yes — Tax Year 2026-27 replaces the awkward 'income earned FY 2026-27 and assessed in AY 2027-28' framing."},
+      {q:"Form 24Q for Q4 (Jan–Mar) is filed by:",type:"mcq",options:["30 April","31 May","30 June"],correct:1,explain:"Q4 24Q is due 31 May, with Annexure II carrying full-year salary computation."},
+      {q:"Maximum tax-exempt gratuity (non-government) is:",type:"mcq",options:["₹10 lakh","₹20 lakh","₹50 lakh"],correct:1,explain:"₹20 lakh ceiling under Section 10(10) — raised from ₹10L in 2018."},
+      {q:"Under labour codes, full-and-final settlement must be completed within:",type:"mcq",options:["30 days","2 working days","60 days"],correct:1,explain:"2 working days from the last working day — a major change effective with the codes."},
+      {q:"Maximum Professional Tax that any state can levy per person per year:",type:"mcq",options:["₹1,500","₹2,500","₹5,000"],correct:1,explain:"Article 276(2) of the Constitution caps PT at ₹2,500 per person per year."},
+      {q:"Health & Education Cess on income tax is:",type:"mcq",options:["3%","4%","5%"],correct:1,explain:"4% cess on (income tax + surcharge) under both regimes."},
+      {q:"Both EPF and ESI contributions are due by the 15th of the following month.",type:"tf",options:["True","False"],correct:0,explain:"Yes — both PF (ECR) and ESI returns + payments are due by 15th."},
+      {q:"EPF interest rate notified for FY 2025-26 is:",type:"mcq",options:["7.50%","8.25%","9.00%"],correct:1,explain:"8.25% — same as the previous year."},
+      {q:"Statutory bonus under the Payment of Bonus Act applies to employees earning monthly wage of:",type:"mcq",options:["≤ ₹15,000","≤ ₹21,000","≤ ₹25,000"],correct:1,explain:"≤ ₹21,000/month, with bonus calculated on ₹7,000 (or minimum wage, whichever is higher)."},
+      {q:"ESOP perquisite is computed as:",type:"mcq",options:["FMV at exercise minus exercise price","Sale price minus exercise price","Always full FMV at grant"],correct:0,explain:"Stage 1: perquisite = FMV at exercise − exercise price. Stage 2: capital gains = sale price − FMV at exercise."},
+      {q:"Under Section 192, TDS on salary is deducted at the time of payment, not credit.",type:"tf",options:["True","False"],correct:0,explain:"Yes — Section 192 is unique among TDS sections in that it triggers only at payment, not credit."},
+      {q:"The minimum statutory bonus payable under the Bonus Act is:",type:"mcq",options:["8.33%","10%","20%"],correct:0,explain:"8.33% minimum (effectively a deferred wage), maximum 20% based on allocable surplus."},
+      {q:"Under the Code on Wages, normal working hours per day are:",type:"mcq",options:["6","8","10"],correct:1,explain:"8 hours/day, 48 hours/week. Overtime is paid at 2× the normal rate."},
+      {q:"In Maharashtra, monthly PT for salaries above the threshold is ₹200 (and ₹300 in February).",type:"tf",options:["True","False"],correct:0,explain:"Yes — totals ₹2,500 annually, hitting the constitutional cap."},
+      {q:"Standard deduction under the OLD regime is:",type:"mcq",options:["₹50,000","₹75,000","₹1,00,000"],correct:0,explain:"Old Regime: ₹50,000 standard deduction. Only the New Regime got the upgrade to ₹75,000."},
+      {q:"International workers in EPF are subject to the ₹15,000 wage ceiling.",type:"tf",options:["True","False"],correct:1,explain:"For International Workers, the ₹15,000 ceiling does NOT apply — PF is computed on full wages."},
+      {q:"Worker re-skilling fund under the IR Code requires the employer to deposit how many days' last drawn wages for retrenched workers?",type:"mcq",options:["7 days","15 days","30 days"],correct:1,explain:"15 days' last-drawn wages into the worker re-skilling fund."},
+      {q:"Income Tax Act 2025 has consolidated 15G and 15H into a new form numbered:",type:"mcq",options:["Form 130","Form 121","Form 24Q"],correct:1,explain:"Forms 15G/15H → Form 121."},
+      {q:"Annual performance bonuses are EXCLUDED from 'wages' under the Code on Wages.",type:"tf",options:["True","False"],correct:0,explain:"Per MoLE FAQ (March 2026), annual performance-based incentives don't form part of wages for the 50% computation."},
+      {q:"For the Income Tax Act 2025, the New Tax Regime is governed by which section?",type:"mcq",options:["Section 115BAC","Section 202","Section 392"],correct:1,explain:"Section 115BAC (1961) → Section 202 (2025). Same default rule, new section number."},
+      {q:"On 16 March 2026, the Ministry of Labour & Employment issued a major FAQ clarifying Labour Code interpretation.",type:"tf",options:["True","False"],correct:0,explain:"Yes — covering wages composition, overtime eligibility for managers, gratuity transition, and more."},
+      {q:"From an employer's perspective, which of these is the LARGEST cost increase from the 50% wages rule?",type:"mcq",options:["Higher PF and gratuity provisions","Higher ESI","Higher TDS"],correct:0,explain:"PF (12%) and gratuity (15/26 × wages × years) both scale with the wage base; the 50% rule typically increases this base."},
+      {q:"Late filing of TDS returns attracts a fee under:",type:"mcq",options:["Section 234E (₹200/day)","Section 234A","Section 87A"],correct:0,explain:"₹200 per day, capped at TDS amount."},
+      {q:"The Income Tax Act 2025 reduces the number of sections from ~819 (1961 Act) to approximately:",type:"mcq",options:["~250","~536","~1000"],correct:1,explain:"~536 sections across 23 chapters in the 2025 Act."},
+      {q:"Under FY 2025-26, what is the highest marginal tax rate (excluding surcharge & cess) under New Regime?",type:"mcq",options:["25%","30%","35%"],correct:1,explain:"30% on income above ₹24 lakh under the New Regime."},
+      {q:"PF withdrawal in case of unemployment is fully permitted after how many months of continuous unemployment?",type:"mcq",options:["1 month","2 months","6 months"],correct:1,explain:"Full PF withdrawal after 2 months of continuous unemployment."},
+      {q:"As a Payroll PM in 2026, the most critical readiness items are: (1) Section 392 update, (2) Form 130 generation, (3) 50% wage rule compliance, (4) 2-day F&F SLA — all four are equally important for go-live.",type:"tf",options:["True","False"],correct:0,explain:"All four are mandatory readiness items for any India payroll product going live in/after April 2026."}
+    ]
+  }
+};
+
+/* ============================================================
+   STATE MANAGEMENT (dual-mode storage)
+   ------------------------------------------------------------
+   Owner mode:  URL contains "#owner"  → localStorage (persists)
+   Visitor mode: any other URL         → sessionStorage (clears on tab close)
+   This way a single hosted file serves both: the owner bookmarks
+   the #owner URL and keeps history; everyone else gets a fresh
+   session every visit with zero residue.
+   ============================================================ */
+
+const STORAGE_KEY = "indiaPayrollAcademy_v1";
+const IS_OWNER = (typeof window !== "undefined") &&
+                 (window.location.hash || "").toLowerCase().includes("owner");
+const STORE = IS_OWNER ? window.localStorage : window.sessionStorage;
+
+function loadState() {
+  try {
+    const raw = STORE.getItem(STORAGE_KEY);
+    if (raw) return JSON.parse(raw);
+  } catch(e) {}
+  return {
+    visitedLinks: {},      // { "1-0": true, "1-1": true, ... }
+    quizScores: {},        // { "1": {best: 18, attempts: 2, passed: true} }
+    finalScore: null
+  };
+}
+
+function saveState() {
+  try {
+    STORE.setItem(STORAGE_KEY, JSON.stringify(state));
+  } catch(e) {}
+}
+
+let state = loadState();
+
+/* ============================================================
+   CARD RENDERING
+   ============================================================ */
+
+function renderDays() {
+  const grid = document.getElementById('daysGrid');
+  grid.innerHTML = '';
+
+  CURRICULUM.forEach(day => {
+    const allLinksClicked = day.topics.every((_, i) => state.visitedLinks[`${day.day}-${i}`]);
+    const quizState = state.quizScores[day.day];
+    const quizPassed = quizState && quizState.passed;
+    const dayCompleted = allLinksClicked && quizPassed;
+
+    const card = document.createElement('div');
+    card.className = 'day-card' + (dayCompleted ? ' completed' : '');
+
+    const tierLabel = {
+      foundation: "Foundation",
+      intermediate: "Intermediate",
+      advanced: "Advanced",
+      expert: "Expert"
+    }[day.tier];
+
+    let topicsHtml = day.topics.map((t, i) => {
+      const visited = state.visitedLinks[`${day.day}-${i}`];
+      return `
+        <li class="${visited ? 'visited' : ''}" data-day="${day.day}" data-idx="${i}">
+          <span class="topic-checkbox">${visited ? '✓' : ''}</span>
+          <a class="topic-link" href="${t.url}" target="_blank" rel="noopener noreferrer"
+             onclick="markVisited(${day.day}, ${i})">${t.label}</a>
+        </li>
+      `;
+    }).join('');
+
+    let quizStatusHtml = '';
+    if (quizState) {
+      if (quizState.passed) {
+        quizStatusHtml = `<div class="quiz-status" style="color:var(--ok)">✓ Passed · Best ${quizState.best}/20 · ${quizState.attempts} attempt${quizState.attempts > 1 ? 's' : ''}</div>`;
+      } else {
+        quizStatusHtml = `<div class="quiz-status" style="color:var(--accent)">Not yet passed · Best ${quizState.best}/20 · ${quizState.attempts} attempt${quizState.attempts > 1 ? 's' : ''}</div>`;
+      }
+    } else {
+      quizStatusHtml = `<div class="quiz-status">Quiz not yet attempted</div>`;
+    }
+
+    const visitedCount = day.topics.filter((_, i) => state.visitedLinks[`${day.day}-${i}`]).length;
+
+    card.innerHTML = `
+      <span class="day-tier ${day.tier}">${tierLabel}</span>
+      <div class="day-num">Day ${String(day.day).padStart(2,'0')}</div>
+      <h3 class="day-title">${day.title.split(' ').slice(0,-2).join(' ')} <span class="ital">${day.title.split(' ').slice(-2).join(' ')}</span></h3>
+      <p class="day-summary">${day.summary}</p>
+      <div class="day-stats">
+        <span>📚 ${day.topics.length} resources</span>
+        <span>·</span>
+        <span>📋 20-Q quiz</span>
+        <span>·</span>
+        <span>${visitedCount}/${day.topics.length} read</span>
+      </div>
+      <ul class="topic-list">${topicsHtml}</ul>
+      <div class="day-cta-row">
+        <button class="btn ${quizPassed ? 'passed' : (allLinksClicked ? 'primary' : '')}"
+                ${!allLinksClicked ? 'disabled' : ''}
+                onclick="startQuiz(${day.day})">
+          ${quizPassed ? '✓ Quiz Passed' : (allLinksClicked ? 'Take Quiz' : 'Read all links to unlock')}
+        </button>
+      </div>
+      ${quizStatusHtml}
+    `;
+
+    grid.appendChild(card);
+  });
+}
+
+/* ============================================================
+   MILESTONES
+   ============================================================ */
+
+const MILESTONES = [
+  {
+    tier: "Day 5 Checkpoint",
+    title: "Foundation Complete",
+    italPart: "Complete.",
+    criteria: "Pass quizzes for Days 1-5",
+    check: () => [1,2,3,4,5].every(d => state.quizScores[d]?.passed)
+  },
+  {
+    tier: "Day 10 Checkpoint",
+    title: "Intermediate Mastery",
+    italPart: "Mastery.",
+    criteria: "Pass quizzes for Days 1-10",
+    check: () => Array.from({length:10},(_,i)=>i+1).every(d => state.quizScores[d]?.passed)
+  },
+  {
+    tier: "Capstone",
+    title: "Expert Certified",
+    italPart: "Certified.",
+    criteria: "Pass the 40-question final exam (≥24/40)",
+    check: () => state.finalScore?.passed
+  }
+];
+
+function renderMilestones() {
+  const grid = document.getElementById('milestonesGrid');
+  grid.innerHTML = '';
+
+  MILESTONES.forEach(m => {
+    const achieved = m.check();
+    const div = document.createElement('div');
+    div.className = 'milestone' + (achieved ? ' achieved' : '');
+    div.innerHTML = `
+      <div class="milestone-tier">${m.tier}</div>
+      <div class="milestone-title">${m.title.replace(m.italPart.replace('.',''), '')}<span class="ital">${m.italPart}</span></div>
+      <div class="milestone-criteria">${m.criteria}</div>
+      <div class="milestone-status">${achieved ? '✓ Achieved' : '◯ In progress'}</div>
+    `;
+    grid.appendChild(div);
+  });
+}
+
+/* ============================================================
+   COMPLETION SCORE & PROGRESS
+   ============================================================ */
+
+function calculateScore() {
+  // Each day worth 9 points (max 90 across 10 days)
+  // Final exam worth 10 points
+  // Total: 100
+  let score = 0;
+  CURRICULUM.forEach(day => {
+    // Links: up to 4 points (proportional)
+    const visitedCount = day.topics.filter((_, i) => state.visitedLinks[`${day.day}-${i}`]).length;
+    score += (visitedCount / day.topics.length) * 4;
+
+    // Quiz pass: 5 points
+    if (state.quizScores[day.day]?.passed) {
+      score += 5;
+    }
+  });
+
+  if (state.finalScore?.passed) score += 10;
+
+  return Math.round(score);
+}
+
+function updateProgressBanner() {
+  const score = calculateScore();
+  const fillPct = Math.min(100, score);
+  document.getElementById('totalScore').textContent = score;
+  document.getElementById('progressFill').style.width = fillPct + '%';
+
+  // Level tags
+  document.getElementById('tagFoundation').classList.toggle('active', score >= 30);
+  document.getElementById('tagIntermediate').classList.toggle('active', score >= 60);
+  document.getElementById('tagExpert').classList.toggle('active', score >= 90);
+
+  // Final exam unlock
+  const day10Passed = state.quizScores[10]?.passed;
+  const allDaysPassed = Array.from({length:10},(_,i)=>i+1).every(d => state.quizScores[d]?.passed);
+  const finalBtn = document.getElementById('finalExamBtn');
+  const finalCard = document.getElementById('finalExamCard');
+  const unlockStatus = document.getElementById('finalUnlockStatus');
+  const finalAttempts = document.getElementById('finalAttempts');
+
+  if (allDaysPassed) {
+    finalBtn.disabled = false;
+    unlockStatus.textContent = state.finalScore?.passed ? 'Passed' : 'Unlocked';
+    unlockStatus.style.color = state.finalScore?.passed ? '#7fce8f' : 'var(--gold)';
+  } else {
+    finalBtn.disabled = true;
+    unlockStatus.textContent = 'Locked';
+  }
+
+  if (state.finalScore) {
+    finalAttempts.textContent = `${state.finalScore.best}/40`;
+  } else {
+    finalAttempts.textContent = '—';
+  }
+}
+
+/* ============================================================
+   LINK TRACKING
+   ============================================================ */
+
+function markVisited(day, idx) {
+  state.visitedLinks[`${day}-${idx}`] = true;
+  saveState();
+  // Re-render after a short delay so the click navigates first
+  setTimeout(() => {
+    renderDays();
+    renderMilestones();
+    updateProgressBanner();
+  }, 300);
+}
+
+/* ============================================================
+   QUIZ ENGINE
+   ============================================================ */
+
+let activeQuiz = null;
+let quizIndex = 0;
+let quizAnswers = [];
+let quizMode = 'answering'; // 'answering' | 'reviewing' | 'results'
+
+function startQuiz(dayKey) {
+  const quiz = QUIZZES[dayKey];
+  if (!quiz) return;
+  // Shuffle questions for replays so it's not memorisation
+  activeQuiz = {
+    key: dayKey,
+    title: quiz.title,
+    passMark: quiz.passMark,
+    questions: shuffle([...quiz.questions]).map(q => ({
+      ...q,
+      // Shuffle options too, but track new correct index
+      _shuffled: shuffleOptions(q)
+    })),
+    total: quiz.questions.length
+  };
+  quizIndex = 0;
+  quizAnswers = new Array(activeQuiz.total).fill(null);
+  quizMode = 'answering';
+  document.getElementById('quizModal').classList.add('active');
+  renderQuizQuestion();
+}
+
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function shuffleOptions(q) {
+  const indexed = q.options.map((opt, i) => ({opt, isCorrect: i === q.correct}));
+  shuffle(indexed);
+  const newCorrect = indexed.findIndex(x => x.isCorrect);
+  return {
+    options: indexed.map(x => x.opt),
+    correct: newCorrect
+  };
+}
+
+function renderQuizQuestion() {
+  const c = document.getElementById('quizContent');
+  if (quizMode === 'results') return renderQuizResults();
+
+  const q = activeQuiz.questions[quizIndex];
+  const sh = q._shuffled;
+  const userAnswer = quizAnswers[quizIndex];
+  const isAnswered = userAnswer !== null;
+
+  const optionsHtml = sh.options.map((opt, i) => {
+    let cls = 'option';
+    if (isAnswered) {
+      if (i === sh.correct) cls += ' correct';
+      else if (i === userAnswer) cls += ' incorrect';
+    } else if (userAnswer === i) cls += ' selected';
+
+    const letter = String.fromCharCode(65 + i);
+    return `
+      <button class="${cls}" ${isAnswered ? 'disabled' : ''}
+              onclick="selectAnswer(${i})">
+        <span class="opt-letter">${letter}</span>
+        <span>${opt}</span>
+      </button>
+    `;
+  }).join('');
+
+  const progressPct = ((quizIndex + 1) / activeQuiz.total) * 100;
+  const isLastQ = quizIndex === activeQuiz.total - 1;
+
+  let feedbackHtml = '';
+  if (isAnswered) {
+    const correct = userAnswer === sh.correct;
+    feedbackHtml = `
+      <div class="feedback-box show ${correct ? 'correct' : ''}">
+        <strong>${correct ? 'Correct.' : 'Not quite.'}</strong>
+        ${q.explain}
+      </div>
+    `;
+  }
+
+  c.innerHTML = `
+    <div class="quiz-header">
+      <div class="quiz-eyebrow">${activeQuiz.key === 'final' ? 'Final Capstone' : 'Daily Quiz'}</div>
+      <div class="quiz-title">${activeQuiz.title}</div>
+      <div class="quiz-meta">Question ${quizIndex + 1} of ${activeQuiz.total} · Pass mark ${activeQuiz.passMark}/${activeQuiz.total}</div>
+      <div class="quiz-progress-bar"><div style="width:${progressPct}%"></div></div>
+    </div>
+    <div class="question-card">
+      <div class="q-num">Q${String(quizIndex + 1).padStart(2,'0')} ${q.type === 'tf' ? '· True / False' : '· Multiple Choice'}</div>
+      <div class="q-text">${q.q}</div>
+      <div class="options">${optionsHtml}</div>
+      ${feedbackHtml}
+    </div>
+    <div class="quiz-nav">
+      <button onclick="prevQuestion()" ${quizIndex === 0 ? 'disabled' : ''}>← Previous</button>
+      ${isLastQ
+        ? `<button class="primary" onclick="submitQuiz()" ${!isAnswered ? 'disabled' : ''}>Submit Quiz</button>`
+        : `<button class="primary" onclick="nextQuestion()" ${!isAnswered ? 'disabled' : ''}>Next →</button>`
+      }
+    </div>
+  `;
+}
+
+function selectAnswer(optIdx) {
+  quizAnswers[quizIndex] = optIdx;
+  renderQuizQuestion();
+}
+
+function nextQuestion() {
+  if (quizIndex < activeQuiz.total - 1) {
+    quizIndex++;
+    renderQuizQuestion();
+  }
+}
+
+function prevQuestion() {
+  if (quizIndex > 0) {
+    quizIndex--;
+    renderQuizQuestion();
+  }
+}
+
+function submitQuiz() {
+  let score = 0;
+  activeQuiz.questions.forEach((q, i) => {
+    if (quizAnswers[i] === q._shuffled.correct) score++;
+  });
+
+  // Update state
+  const key = activeQuiz.key;
+  if (key === 'final') {
+    const prev = state.finalScore || {best: 0, attempts: 0, passed: false};
+    state.finalScore = {
+      best: Math.max(prev.best, score),
+      attempts: prev.attempts + 1,
+      passed: prev.passed || score >= activeQuiz.passMark,
+      lastScore: score
+    };
+  } else {
+    const prev = state.quizScores[key] || {best: 0, attempts: 0, passed: false};
+    state.quizScores[key] = {
+      best: Math.max(prev.best, score),
+      attempts: prev.attempts + 1,
+      passed: prev.passed || score >= activeQuiz.passMark,
+      lastScore: score
+    };
+  }
+  saveState();
+
+  quizMode = 'results';
+  activeQuiz._finalScore = score;
+  renderQuizResults();
+  // Re-render everything underneath
+  setTimeout(() => {
+    renderDays();
+    renderMilestones();
+    updateProgressBanner();
+  }, 100);
+}
+
+function renderQuizResults() {
+  const score = activeQuiz._finalScore;
+  const passed = score >= activeQuiz.passMark;
+  const c = document.getElementById('quizContent');
+
+  let msg = '';
+  if (activeQuiz.key === 'final') {
+    msg = passed
+      ? "Congratulations — you have completed the India Payroll Academy and earned Expert certification. You're now equipped to design, build, and ship India payroll product features with confidence across all major statutory and operational areas."
+      : "You came close, but the Capstone needs 24/40. Review the Day 6 (Income Tax Act 2025), Day 7 (Labour Codes), and Day 10 (Operations) modules — those carry the highest exam weight — and try again. Your progress is saved.";
+  } else {
+    msg = passed
+      ? `Strong performance. You've cleared Day ${activeQuiz.key}. Keep the momentum — move on to the next module.`
+      : `You scored ${score} out of 20. The pass mark is ${activeQuiz.passMark}. Review the linked study material and retake the quiz — every retry shuffles the questions.`;
+  }
+
+  c.innerHTML = `
+    <div class="results">
+      <div class="quiz-eyebrow">${passed ? 'Passed' : 'Did not pass'}</div>
+      <div class="results-score ${passed ? 'pass' : 'fail'}">${score}</div>
+      <div class="results-denom">/ ${activeQuiz.total} · Pass mark ${activeQuiz.passMark}</div>
+      <div class="results-verdict ${passed ? 'pass' : 'fail'}">${passed ? '✓ Module cleared' : '✕ Try again'}</div>
+      <div class="results-msg">${msg}</div>
+      <div style="display:flex;gap:12px;justify-content:center;margin-top:8px">
+        <button class="btn" onclick="closeQuiz()">Close</button>
+        ${!passed ? `<button class="btn primary" onclick="startQuiz('${activeQuiz.key}')">Retake Quiz</button>` : ''}
+      </div>
+    </div>
+  `;
+}
+
+function closeQuiz() {
+  document.getElementById('quizModal').classList.remove('active');
+  activeQuiz = null;
+  renderDays();
+  renderMilestones();
+  updateProgressBanner();
+}
+
+/* ============================================================
+   RESET
+   ============================================================ */
+
+function resetAll() {
+  if (!confirm("This will erase all your progress, link history, and quiz scores. Continue?")) return;
+  state = { visitedLinks: {}, quizScores: {}, finalScore: null };
+  saveState();
+  renderDays();
+  renderMilestones();
+  updateProgressBanner();
+}
+
+/* ============================================================
+   INIT
+   ============================================================ */
+
+// Mode badge — tells visitors their progress is session-only
+(function initModeBadge(){
+  const badge = document.getElementById('modeBadge');
+  if (!badge) return;
+  if (IS_OWNER) {
+    badge.textContent = 'Owner mode — saved';
+    badge.classList.add('owner');
+    badge.title = 'Your progress persists in this browser via localStorage.';
+  } else {
+    badge.textContent = 'Session only — clears on tab close';
+    badge.classList.add('visitor');
+    badge.title = 'Progress is kept only for this tab. Close the tab and it will reset. Add #owner to the URL to persist progress across visits.';
+  }
+})();
+
+renderDays();
+renderMilestones();
+updateProgressBanner();
+
+// Close modal when clicking backdrop
+document.getElementById('quizModal').addEventListener('click', (e) => {
+  if (e.target.id === 'quizModal') closeQuiz();
+});
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+  if (!document.getElementById('quizModal').classList.contains('active')) return;
+  if (e.key === 'Escape') closeQuiz();
+  if (quizMode !== 'answering') return;
+  if (e.key === 'ArrowLeft' && quizIndex > 0) prevQuestion();
+  if (e.key === 'ArrowRight' && quizAnswers[quizIndex] !== null) {
+    if (quizIndex < activeQuiz.total - 1) nextQuestion();
+  }
+});
+
+</script>
+</body>
+</html>
